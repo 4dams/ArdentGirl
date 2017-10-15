@@ -32,6 +32,7 @@ It got some nice features such as informational commands, fun commands and even 
 - "getSummonerIds" with forEach
 - fix "!topchamp" command
 - add commands from list
+- translate main commands into english
 
 # Installation
 
