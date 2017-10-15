@@ -41,6 +41,6 @@ Other than that, you will have to adjust some options in the main bot file. </br
 The Riot API token can be retrieved at https://developer.riotgames.com/.</br>
 Your Twitch OAuth token can be found at https://twitchapps.com/tmi/, once you logged in with the account you want to use the bot on.</br>
 </br>
-You will then have to fill in your Riot API token in **line 6** and your Twitch username and OAuth token in **line 21 and 22**.
+You will then have to fill in your Riot API token in line 6 and your Twitch username and OAuth token in line 21 and 22.
 </br>
 After you have done that, you can simply start the bot with `node app.js` in the directory where the app.js is located in!
