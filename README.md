@@ -20,6 +20,10 @@ It got some nice features such as informational commands, fun commands and even 
 - [ ] **"!winrate `<summoner>`" shows you the winrate of a specific summoner** *(requires Riot API)*
 - [ ] **"!spell `<summoner spell name>`" gives you information about a summoner spell** *(requires Riot API)*
 - [ ] "!addcommand `<trigger> <response>`" lets you add a new command via chat
+- [ ] "!8ball" for responding with a random string (yes/no/maybe...)
+- [ ] "!chatstats" or "!emotestats" to see how much a specific emote/string has been used
+- [ ] "!vanish" to remove all messages from yourself
+- [ ] "!permit" permit users to post links (will otherwise delete all links)
 
 *Note: Those commands have been adjusted for one special streamer but you can change and adjust them as much as you want, even though they're in german.*
 
