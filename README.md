@@ -38,8 +38,8 @@ Other than that, you will have to adjust some options in the main bot file. </br
 1. Your Riot API token
 2. Your Twitch OAuth token
 </br>
-The Riot API token can be retrieved [**here**](https://developer.riotgames.com/). (developer.riotgames.com) </br>
-Your Twitch OAuth token can be found [**here**](https://twitchapps.com/tmi/), once you logged in with the account you want to use the bot on. (twitchapps.com/tmi)</br>
+The Riot API token can be retrieved [here](https://developer.riotgames.com/). (developer.riotgames.com) </br>
+Your Twitch OAuth token can be found [here](https://twitchapps.com/tmi/) (twitchapps.com/tmi), once you logged in with the account you want to use the bot on.</br>
 </br>
 You will then have to fill in your Riot API token in **line 6** and your Twitch username and OAuth token in **line 21 and 22**.
 </br>
