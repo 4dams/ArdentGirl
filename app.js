@@ -106,12 +106,14 @@ client_twitch.on("connected", function (address, port) {
 
       // Info Command
       if(message.toLowerCase().includes("!info")) {
+        if(self) return
         client_twitch.action(channel, "[🤖] Mr4dams' Bot (Version " + version + ") ist ein selbstersteller Twitch-Bot welcher jede Menge an Informationen sammelt, aktualisiert und wiedergibt. Der Bot kann League-Informationen über einen bestimmten Spieler abrufen, sowie zu einfachen Spaß-Commands reagieren. Schreibe !commands für eine komplette Liste aller Befehle!")
         console.log("[" + moment().format('LTS') + "] Bot-info requested in " + channel + "!")
       }
 
       // Twitter Command
       if(message.toLowerCase().includes("!twitter")) {
+
         if(self) return
         client_twitch.action(channel, "[🤖] Mehmet's Twitter findest du hier: https://goo.gl/6oKfCv 🐦")
         console.log("[" + moment().format('LTS') + "] Twitter requested in " + channel + "!")
