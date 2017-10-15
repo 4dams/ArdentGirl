@@ -27,6 +27,12 @@ It got some nice features such as informational commands, fun commands and even 
 
 *Note: Those commands have been adjusted for one special streamer but you can change and adjust them as much as you want, even though they're in german.*
 
+# To do
+
+- "getSummonerIds" with forEach
+- fix "!topchamp" command
+- add commands from list
+
 # Installation
 
 To run this bot, you have to have [Node.js](https://nodejs.org/en/) installed on the machine you're running the bot on. Other than that, you will need a few modules. There's a list of all modules below.
