@@ -1,14 +1,19 @@
+// Config festlegen
+
+var config = require('./config.json');
+
+
 // Dependencies
 
 var tmi = require('tmi.js');
 var moment = require('moment');
 const TeemoJS = require('teemojs');
-let api = TeemoJS('RIOT_API_KEY_HERE');
+let api = TeemoJS(config.riot_api.token);
 
 
 // Optionen
 
-var version = "1.0.22"
+var version = "1.0.49"
 
 var options = {
   options: {
@@ -18,10 +23,10 @@ var options = {
     reconnect: true
   },
   identity: {
-    username: "mr4dams",
-    password: "TWITCH_TOKEN_HERE"
+    username: config.twitch.username,
+    password: config.twitch.password
   },
-  channels: ["#mr4dams", "#followredphoenix"]
+  channels: config.twitch.channels
 }
 
 
@@ -45,18 +50,24 @@ client_twitch.on("connected", function (address, port) {
 
     if(channel == "#followredphoenix") {
 
-      const followredphoenix_summonername = "YuRedPhoenix"
-      const followredphoenix_summonerid = "95457313"
+      const channel_summonername = config.channels.followredphoenix.summonername
+      const channel_summonerid = config.channels.followredphoenix.summonerid
 
       //  How to get SummonerID by Summoner Name (Just an example)
       //
       //  api.get('euw1', 'summoner.getBySummonerName', 'YuRedPhoenix')
       //    .then(data => console.log(Die Summoner ID von " + data.name + " lautet " + data.id + ".")
 
+      // Timeout Links
+      if(message.toLowerCase().includes("http")) {
+        if(config.twitch.delete_links == 0) return
+        client_twitch.timeout(channel, user.username, 1, "Gesendeter Link von " + user.username + " entfernt.")
+      }
+
       // Elo Command
       if(message.toLowerCase().includes("!elo")) {
         if(self) return
-        api.get('euw1', 'league.getAllLeaguePositionsForSummoner', followredphoenix_summonerid)
+        api.get('euw1', 'league.getAllLeaguePositionsForSummoner', channel_summonerid)
           .then(data => {
             let entry = data.find(e => e.queueType === 'RANKED_SOLO_5x5');
             client_twitch.action(channel, '[🤖] ' + entry.playerOrTeamName + ' ist momentan ' + entry.tier + ' ' + entry.rank + ' mit ' + entry.leaguePoints + ' LP. Schreibe "!winrate" in den Chat, für mehr Informationen!');
@@ -67,7 +78,7 @@ client_twitch.on("connected", function (address, port) {
       // Winrate Command
       if(message.toLowerCase().includes("!winrate")) {
         if(self) return
-        api.get('euw1', 'league.getAllLeaguePositionsForSummoner', followredphoenix_summonerid)
+        api.get('euw1', 'league.getAllLeaguePositionsForSummoner', channel_summonerid)
         .then(data => {
           let entry = data.find(e => e.queueType === 'RANKED_SOLO_5x5');
           var q_wins = entry.wins
@@ -75,42 +86,48 @@ client_twitch.on("connected", function (address, port) {
           var q_winrate = q_wins / (q_wins + q_losses) * 100
           var q_winrate_rounded = Math.round(q_winrate * 100) / 100
           client_twitch.action(channel, "[🤖] Yu RedPhoenix hat eine Winrate von " + q_winrate_rounded + "%. (" + q_wins + " W / " + q_losses + " L)")
+          console.log("[" + moment().format('LTS') + "] Winrate requested in " + channel + "!")
         });
       }
 
       // Top Champion Command - Broken
       if(message.toLowerCase().includes("!topchamp")) {
         if(self) return
-        api.get('euw1', 'championMastery.getAllChampionMasteries', followredphoenix_summonerid)
+        api.get('euw1', 'championMastery.getAllChampionMasteries', channel_summonerid)
         .then(data => {
           let entry2 = data.find(e2 => e2.championId === '40');
           var champ1_points = entry2.championPoints
           var champ1_level = entry2.championLevel
           client_twitch.action(channel, "[🤖] Yu RedPhoenix' bester Champion ist Janna mit Championlevel " + champ1_level + " und " + champ1_points + " Masterypoints.")
+          console.log("[" + moment().format('LTS') + "] Top Champ requested in " + channel + "!")
         });
       }
 
       // Info Command
       if(message.toLowerCase().includes("!info")) {
         client_twitch.action(channel, "[🤖] Mr4dams' Bot (Version " + version + ") ist ein selbstersteller Twitch-Bot welcher jede Menge an Informationen sammelt, aktualisiert und wiedergibt. Der Bot kann League-Informationen über einen bestimmten Spieler abrufen, sowie zu einfachen Spaß-Commands reagieren. Schreibe !commands für eine komplette Liste aller Befehle!")
+        console.log("[" + moment().format('LTS') + "] Bot-info requested in " + channel + "!")
       }
 
       // Twitter Command
       if(message.toLowerCase().includes("!twitter")) {
         if(self) return
         client_twitch.action(channel, "[🤖] Mehmet's Twitter findest du hier: https://goo.gl/6oKfCv 🐦")
+        console.log("[" + moment().format('LTS') + "] Twitter requested in " + channel + "!")
       }
 
       // Twitter Command
       if(message.toLowerCase().includes("!playlist")) {
         if(self) return
         client_twitch.action(channel, "[🤖] Mehmet's aktuelle Playlist findest hier: https://goo.gl/y6DDse 🎶")
+        console.log("[" + moment().format('LTS') + "] Playlist requested in " + channel + "!")
       }
 
       // Tilt Command
       if(message.toLowerCase().includes("!tilt")) {
         if(self) return
         client_twitch.action(channel, "Ja, Mehmet ist manchmal ein wenig Tilted. Kappa")
+        console.log("[" + moment().format('LTS') + "] Tilted requested in " + channel + "!")
       }
 
       // Command Lists
@@ -118,31 +135,23 @@ client_twitch.on("connected", function (address, port) {
         if(self) return
         client_twitch.action(channel, "[🤖] Verfügbare Commands: !commands, !elo, !info, !myelo, !playlist, !tilt, !twitter, !winrate und !zeit.")
         client_twitch.action(channel, "[🤖] Weitere Commands für Moderatoren und Subs können abgerufen werden mit !modcommands und !subcommands.")
+        console.log("[" + moment().format('LTS') + "] Commands requested in " + channel + "!")
       }
 
       // Moderator Commands
       if(message.toLowerCase().includes("!modcommands")) {
         if(self) return
         client_twitch.action(channel, "[🤖] Verfügbare Commands für Moderatoren: !purge <user> und !exit")
+        console.log("[" + moment().format('LTS') + "] Modcommands requested in " + channel + "!")
       }
 
       // Sub Commands
       if(message.toLowerCase().includes("!subcommands")) {
         if(self) return
         client_twitch.action(channel, "[🤖] Subcommands folgen noch.")
+        console.log("[" + moment().format('LTS') + "] Subcommands requested in " + channel + "!")
       }
 
-      // Purge Command
-      if(message.toLowerCase().includes("!purge")) {
-        if(self) return
-        if(user.mod) {
-          var words = message.split(' ');
-          var purge_target = words[1];
-          var command_user = user.username
-          client_twitch.timeout(channel, purge_target, 1, "Purge command used my moderator " + command_user + "!")
-          client_twitch.action(channel, "[🤖] Die letzten Nachrichten von " + purge_target + " wurden erfolgreich entfernt.")
-        }
-      }
 
       // My Elo Command
       if(message.toLowerCase().includes("!myelo")) {
@@ -176,13 +185,56 @@ client_twitch.on("connected", function (address, port) {
           "Master PogChamp",
           "Challenger Keepo"]
           client_twitch.say(channel, `@` + user.username + ` ist gerade mal ${elos[Math.floor(elos.length * Math.random())]}`)
+          console.log("[" + moment().format('LTS') + "] Myelo requested in " + channel + "!")
       }
 
-      // Time Command
-      if(message.toLowerCase().includes("!zeit")) {
+      // 8ball Command
+      if(message.toLowerCase().includes("!8ball")) {
         if(self) return
-        client_twitch.action(channel, "Auf meiner Uhr ist es gerade " + moment().format('LTS') + ". 🤔")
+        const elos = [
+          '"Ja!"',
+          '"Auf jeden Fall!"',
+          '"Natürlich!"',
+          '"Eventuell. 🤔"',
+          '"Vielleicht."',
+          '"Mit großer Wahrscheinlichkeit." Kappa',
+          '"Nö."',
+          '"Nein."',
+          '"Ich glaube nicht."',
+          '"Auf keinen Fall" Kappa',
+        ]
+          client_twitch.say(channel, `[🔮] Die magische Kugel sagt ${elos[Math.floor(elos.length * Math.random())]}`)
+          console.log("[" + moment().format('LTS') + "] 8ball requested in " + channel + "!")
       }
+
+      // Vanish Command
+      if(message.toLowerCase().includes("!vanish")) {
+        if(self) return
+          var command_user = user.username
+          client_twitch.timeout(channel, command_user, 1, command_user + " hat seine eigenen Nachrichten entfernt.")
+          client_twitch.action(channel, "Huh? Wo ist " + command_user + " hin? 🕵")
+          console.log("[" + moment().format('LTS') + "] Vanish requested in " + channel + "!")
+        }
+      }
+
+    // Purge Command
+    if(message.toLowerCase().includes("!purge")) {
+      if(self) return
+        if(user.mod) {
+          var words = message.split(' ');
+          var purge_target = words[1];
+          var command_user = user.username
+          client_twitch.timeout(channel, purge_target, 1, "Alle Nachrichten von " + purge_target + " wurden von " + command_user + " entfernt.")
+          client_twitch.action(channel, "[🤖] Die letzten Nachrichten von " + purge_target + " wurden erfolgreich entfernt. ")
+          console.log("[" + moment().format('LTS') + "] Purge used in " + channel + "!")
+      }
+    }
+
+    // Time Command
+    if(message.toLowerCase().includes("!zeit")) {
+      if(self) return
+      client_twitch.action(channel, "Auf meiner Uhr ist es gerade " + moment().format('LTS') + ". 🤔")
+      console.log("[" + moment().format('LTS') + "] Zeit requested in " + channel + "!")
     }
 
   });
@@ -191,6 +243,7 @@ client_twitch.on("connected", function (address, port) {
   client_twitch.on("cheer", function (channel, userstate, message) {
       if(channel == "#followredphoenix") {
         client_twitch.say(channel, "Vielen Dank für deine " + user.bits + " Bits, " + user.username + "! PogChamp")
+        console.log("[" + moment().format('LTS') + "] " + user.bits + " Bits erhalten in " + channel + "!")
       }
   });
 
@@ -198,6 +251,7 @@ client_twitch.on("connected", function (address, port) {
   client_twitch.on("subscription", function (channel, username, method, message, userstate) {
     if(channel == "#followredphoenix") {
       client_twitch.say(channel, "PogChamp " + username + "! Vielen Dank für deinen Sub!")
+      console.log("[" + moment().format('LTS') + "] " + username + " hat " + channel + " abonniert!")
     }
   });
 
@@ -205,6 +259,7 @@ client_twitch.on("connected", function (address, port) {
   client_twitch.on("resub", function (channel, username, months, message, userstate, methods) {
     if(channel == "#followredphoenix") {
       client_twitch.say(channel, "PogChamp " + username + "! Vielen Dank für deinen " + months + "-Monate Resub!")
+      console.log("[" + moment().format('LTS') + "] " + username + " hat " + channel + " für " + months + " Monate abonniert!")
     }
   });
 
@@ -212,5 +267,12 @@ client_twitch.on("connected", function (address, port) {
   client_twitch.on("hosted", function (channel, username, viewers, autohost) {
       if(channel == "#followredphoenix") {
         client_twitch.say(channel, "PogChamp Danke für deinen Host, " + username + "! Deine " + viewers + " Zuschauer sind sehr willkommen! <3")
+        console.log("[" + moment().format('LTS') + "] " + username + " hostet " + channel + " für " + viewers + " Zuschauer!")
       }
   });
+
+
+function getSummonerId() {
+  api.get('euw1', 'summoner.getBySummonerName', config.channels.followredphoenix.summonername)
+    .then(data => console.log("[" + moment().format('LTS') + "] Summoner ID für " + data.name + " lautet " + data.id + "."))
+}
