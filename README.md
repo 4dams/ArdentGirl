@@ -17,6 +17,10 @@ It got some nice features such as informational commands, fun commands and even 
 - [X] **"!winrate" calculates a users current winrate and then sends it in chat** *(requires Riot API)*
 - [X] "!zeit" sends the streamers current time
 
+- [ ] "!elo <summoner>"
+- [ ] "!winrate <summoner>"
+- [ ] "!addcommand <trigger> <response>"
+
 *Note: Those commands have been adjusted for one special streamer but you can change and adjust them as much as you want, even though they're in german.*
 
 # Installation
