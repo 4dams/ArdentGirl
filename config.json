@@ -1,0 +1,26 @@
+{
+
+  "riot_api": {
+    "token": "YOUR_API_KEY_HERE"
+  },
+
+  "twitch": {
+    "username": "YOUR_BOT_USERNAME_HERE",
+    "password": "YOUR_BOT_PASSWORD_HERE",
+    "channels": ["#followredphoenix", "#mr4dams"],
+    "delete_links": 1
+  },
+
+  "channels": {
+    "followredphoenix": {
+      "summonername": "YuRedPhoenix",
+      "summonerid": "95457313"
+    },
+
+    "mr4dams": {
+      "summonername": "SUΡΡORT",
+      "summonerid": "95457313"
+    }
+  }
+
+}
