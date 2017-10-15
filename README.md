@@ -33,6 +33,7 @@ It got some nice features such as informational commands, fun commands and even 
 - fix "!topchamp" command
 - add commands from list
 - translate main commands into english
+- split commands into seperate file
 
 # Installation
 
