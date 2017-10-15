@@ -45,10 +45,18 @@ client_twitch.on("connected", function (address, port) {
 
     if(channel == "#followredphoenix") {
 
+      const followredphoenix_summonername = "YuRedPhoenix"
+      const followredphoenix_summonerid = "95457313"
+
+      //  How to get SummonerID by Summoner Name (Just an example)
+      //
+      //  api.get('euw1', 'summoner.getBySummonerName', 'YuRedPhoenix')
+      //    .then(data => console.log(Die Summoner ID von " + data.name + " lautet " + data.id + ".")
+
       // Elo Command
       if(message.toLowerCase().includes("!elo")) {
         if(self) return
-        api.get('euw1', 'league.getAllLeaguePositionsForSummoner', '95457313')
+        api.get('euw1', 'league.getAllLeaguePositionsForSummoner', followredphoenix_summonerid)
           .then(data => {
             let entry = data.find(e => e.queueType === 'RANKED_SOLO_5x5');
             client_twitch.action(channel, '[🤖] ' + entry.playerOrTeamName + ' ist momentan ' + entry.tier + ' ' + entry.rank + ' mit ' + entry.leaguePoints + ' LP. Schreibe "!winrate" in den Chat, für mehr Informationen!');
@@ -56,17 +64,10 @@ client_twitch.on("connected", function (address, port) {
         console.log("[" + moment().format('LTS') + "] Elo requested in " + channel + "!")
       }
 
-      // Summoner ID
-      if(message.toLowerCase().includes("!summoner")) {
-        if(self) return
-        api.get('euw1', 'summoner.getBySummonerName', 'YuRedPhoenix')
-          .then(data => client_twitch.action(channel, "[🤖] Die Summoner ID von " + data.name + " lautet " + data.id + '.'));
-      }
-
       // Winrate Command
       if(message.toLowerCase().includes("!winrate")) {
         if(self) return
-        api.get('euw1', 'league.getAllLeaguePositionsForSummoner', '95457313')
+        api.get('euw1', 'league.getAllLeaguePositionsForSummoner', followredphoenix_summonerid)
         .then(data => {
           let entry = data.find(e => e.queueType === 'RANKED_SOLO_5x5');
           var q_wins = entry.wins
@@ -80,7 +81,7 @@ client_twitch.on("connected", function (address, port) {
       // Top Champion Command - Broken
       if(message.toLowerCase().includes("!topchamp")) {
         if(self) return
-        api.get('euw1', 'championMastery.getAllChampionMasteries', '95457313')
+        api.get('euw1', 'championMastery.getAllChampionMasteries', followredphoenix_summonerid)
         .then(data => {
           let entry2 = data.find(e2 => e2.championId === '40');
           var champ1_points = entry2.championPoints
@@ -180,7 +181,7 @@ client_twitch.on("connected", function (address, port) {
       // Time Command
       if(message.toLowerCase().includes("!zeit")) {
         if(self) return
-        client_twitch.action(channel, "Auf meiner Uhr ist es gerade " + moment().format('LTS') ". 🤔")
+        client_twitch.action(channel, "Auf meiner Uhr ist es gerade " + moment().format('LTS') + ". 🤔")
       }
     }
 
