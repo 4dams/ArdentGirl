@@ -61,8 +61,9 @@ client_twitch.on("connected", function (address, port) {
 
       // Timeout Links
       if(message.toLowerCase().includes("http")) {
-        if(config.twitch.delete_links == 0) return
-        client_twitch.timeout(channel, user.username, 1, "Gesendeter Link von " + user.username + " entfernt.")
+        if (self) return
+          if(config.twitch.delete_links == 0) return
+            client_twitch.timeout(channel, user.username, 1, "Gesendeter Link von " + user.username + " entfernt.")
       }
 
       // Elo Command
