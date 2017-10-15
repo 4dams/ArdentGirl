@@ -3,10 +3,12 @@
 var tmi = require('tmi.js');
 var moment = require('moment');
 const TeemoJS = require('teemojs');
-let api = TeemoJS('YOUR_RIOT_API_KEY_HERE');
+let api = TeemoJS('RIOT_API_KEY_HERE');
 
 
 // Optionen
+
+var version = "1.0.22"
 
 var options = {
   options: {
@@ -17,7 +19,7 @@ var options = {
   },
   identity: {
     username: "mr4dams",
-    password: "YOUR_TWITCH_OAUTH_TOKEN_HERE"
+    password: "TWITCH_TOKEN_HERE"
   },
   channels: ["#mr4dams", "#followredphoenix"]
 }
@@ -87,18 +89,43 @@ client_twitch.on("connected", function (address, port) {
         });
       }
 
+      // Info Command
+      if(message.toLowerCase().includes("!info")) {
+        client_twitch.action(channel, "[🤖] Mr4dams' Bot (Version " + version + ") ist ein selbstersteller Twitch-Bot welcher jede Menge an Informationen sammelt, aktualisiert und wiedergibt. Der Bot kann League-Informationen über einen bestimmten Spieler abrufen, sowie zu einfachen Spaß-Commands reagieren. Schreibe !commands für eine komplette Liste aller Befehle!")
+      }
+
+      // Twitter Command
+      if(message.toLowerCase().includes("!twitter")) {
+        if(self) return
+        client_twitch.action(channel, "[🤖] Mehmet's Twitter findest du hier: https://goo.gl/6oKfCv 🐦")
+      }
+
+      // Twitter Command
+      if(message.toLowerCase().includes("!playlist")) {
+        if(self) return
+        client_twitch.action(channel, "[🤖] Mehmet's aktuelle Playlist findest hier: https://goo.gl/y6DDse 🎶")
+      }
+
+      // Tilt Command
+      if(message.toLowerCase().includes("!tilt")) {
+        if(self) return
+        client_twitch.action(channel, "Ja, Mehmet ist manchmal ein wenig Tilted. Kappa")
+      }
+
       // Command Lists
       if(message.toLowerCase().includes("!commands")) {
         if(self) return
-        client_twitch.action(channel, "[🤖] Verfügbare Commands: !elo, !winrate, !topchamp, !myelo, !commands.")
+        client_twitch.action(channel, "[🤖] Verfügbare Commands: !commands, !elo, !info, !myelo, !playlist, !tilt, !twitter, !winrate und !zeit.")
         client_twitch.action(channel, "[🤖] Weitere Commands für Moderatoren und Subs können abgerufen werden mit !modcommands und !subcommands.")
       }
 
+      // Moderator Commands
       if(message.toLowerCase().includes("!modcommands")) {
         if(self) return
-        client_twitch.action(channel, "[🤖] Verfügbare Commands für Moderatoren: !purge <user>, !exit, ")
+        client_twitch.action(channel, "[🤖] Verfügbare Commands für Moderatoren: !purge <user> und !exit")
       }
 
+      // Sub Commands
       if(message.toLowerCase().includes("!subcommands")) {
         if(self) return
         client_twitch.action(channel, "[🤖] Subcommands folgen noch.")
@@ -116,7 +143,9 @@ client_twitch.on("connected", function (address, port) {
         }
       }
 
+      // My Elo Command
       if(message.toLowerCase().includes("!myelo")) {
+        if(self) return
         const elos = [
           "Bronze 5 BibleThump",
           "Bronze 4 BibleThump",
@@ -148,6 +177,11 @@ client_twitch.on("connected", function (address, port) {
           client_twitch.say(channel, `@` + user.username + ` ist gerade mal ${elos[Math.floor(elos.length * Math.random())]}`)
       }
 
+      // Time Command
+      if(message.toLowerCase().includes("!zeit")) {
+        if(self) return
+        client_twitch.action(channel, "Auf meiner Uhr ist es gerade " + moment().format('LTS') ". 🤔")
+      }
     }
 
   });
@@ -155,7 +189,7 @@ client_twitch.on("connected", function (address, port) {
   // Cheer Event
   client_twitch.on("cheer", function (channel, userstate, message) {
       if(channel == "#followredphoenix") {
-        client_twitch.say(channel, "Vielen Dank für deine " + user.bits + " Bits, " + user.username "! PogChamp")
+        client_twitch.say(channel, "Vielen Dank für deine " + user.bits + " Bits, " + user.username + "! PogChamp")
       }
   });
 
