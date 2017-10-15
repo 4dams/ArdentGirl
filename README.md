@@ -16,9 +16,10 @@ It got some nice features such as informational commands, fun commands and even 
 - [X] "!twitter" sends a link to the users twitter account
 - [X] **"!winrate" calculates a users current winrate and then sends it in chat** *(requires Riot API)*
 - [X] "!zeit" sends the streamers current time
-- [ ] **"!elo `<summoner>`"** *(requires Riot API)*** *(requires Riot API)*
-- [ ] **"!winrate `<summoner>`"** *(requires Riot API)*
-- [ ] "!addcommand `<trigger> <response>`"
+- [ ] **"!elo `<summoner>`" lets you check the elo of a specific summoner** *(requires Riot API)*
+- [ ] **"!winrate `<summoner>`" shows you the winrate of a specific summoner** *(requires Riot API)*
+- [ ] **"!spell `<summoner spell name>`" gives you information about a summoner spell** *(requires Riot API)*
+- [ ] "!addcommand `<trigger> <response>`" lets you add a new command via chat
 
 *Note: Those commands have been adjusted for one special streamer but you can change and adjust them as much as you want, even though they're in german.*
 
