@@ -39,7 +39,8 @@ client_twitch.connect();
 // Connected?
 
 client_twitch.on("connected", function (address, port) {
-    console.log("[" + moment().format('LTS') + "] Twitch client connected!")
+    console.log("[" + moment().format('LTS') + "] Twitch client verbunden! Frage SummonerIDs an...")
+    getSummonerIds();
 });
 
 
@@ -50,8 +51,8 @@ client_twitch.on("connected", function (address, port) {
 
     if(channel == "#followredphoenix") {
 
-      const channel_summonername = config.channels.followredphoenix.summonername
-      const channel_summonerid = config.channels.followredphoenix.summonerid
+      var channel_summonername = config.channels.followredphoenix.summonername;
+      var channel_summonerId = config.channels.followredphoenix.summonerId;
 
       //  How to get SummonerID by Summoner Name (Just an example)
       //
@@ -67,7 +68,7 @@ client_twitch.on("connected", function (address, port) {
       // Elo Command
       if(message.toLowerCase().includes("!elo")) {
         if(self) return
-        api.get('euw1', 'league.getAllLeaguePositionsForSummoner', channel_summonerid)
+        api.get('euw1', 'league.getAllLeaguePositionsForSummoner', channel_summonerId)
           .then(data => {
             let entry = data.find(e => e.queueType === 'RANKED_SOLO_5x5');
             client_twitch.action(channel, '[🤖] ' + entry.playerOrTeamName + ' ist momentan ' + entry.tier + ' ' + entry.rank + ' mit ' + entry.leaguePoints + ' LP. Schreibe "!winrate" in den Chat, für mehr Informationen!');
@@ -78,7 +79,7 @@ client_twitch.on("connected", function (address, port) {
       // Winrate Command
       if(message.toLowerCase().includes("!winrate")) {
         if(self) return
-        api.get('euw1', 'league.getAllLeaguePositionsForSummoner', channel_summonerid)
+        api.get('euw1', 'league.getAllLeaguePositionsForSummoner', channel_summonerId)
         .then(data => {
           let entry = data.find(e => e.queueType === 'RANKED_SOLO_5x5');
           var q_wins = entry.wins
@@ -93,7 +94,7 @@ client_twitch.on("connected", function (address, port) {
       // Top Champion Command - Broken
       if(message.toLowerCase().includes("!topchamp")) {
         if(self) return
-        api.get('euw1', 'championMastery.getAllChampionMasteries', channel_summonerid)
+        api.get('euw1', 'championMastery.getAllChampionMasteries', channel_summonerId)
         .then(data => {
           let entry2 = data.find(e2 => e2.championId === '40');
           var champ1_points = entry2.championPoints
@@ -272,7 +273,18 @@ client_twitch.on("connected", function (address, port) {
   });
 
 
-function getSummonerId() {
-  api.get('euw1', 'summoner.getBySummonerName', config.channels.followredphoenix.summonername)
-    .then(data => console.log("[" + moment().format('LTS') + "] Summoner ID für " + data.name + " lautet " + data.id + "."))
+function getSummonerIds() {
+
+    api.get('euw1', 'summoner.getBySummonerName', config.channels.followredphoenix.summonername)
+    .then(data => {
+      console.log("[" + moment().format('LTS') + "] Summoner ID für " + data.name + " lautet " + data.id + ".")
+      var channel1_summonerId = data.id;
+    });
+
+    api.get('euw1', 'summoner.getBySummonerName', config.channels.mr4dams.summonername)
+    .then(data => {
+      console.log("[" + moment().format('LTS') + "] Summoner ID für " + data.name + " lautet " + data.id + ".")
+      var channel2_summonerId = data.id;
+    });
+
 }
