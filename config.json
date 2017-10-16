@@ -8,7 +8,7 @@
     "username": "YOUR_BOT_USERNAME_HERE",
     "password": "YOUR_BOT_PASSWORD_HERE",
     "channels": ["#followredphoenix", "#mr4dams"],
-    "delete_links": 1
+    "delete_links": true
   },
 
   "channels": {
