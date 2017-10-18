@@ -12,12 +12,12 @@
 
   "channels": {
       "followredphoenix": {
-        "summonername": "YuRedPhoenix"
+        "summonername": "YuRedPhoenix",
         "delete_links": false
       },
 
       "mr4dams": {
-        "summonername": "Kemotayy"
+        "summonername": "Kemotayy",
         "delete_links": true
       }
     }
