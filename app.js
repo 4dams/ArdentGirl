@@ -1,6 +1,7 @@
 // Config festlegen
 
 var config = require('./config.json');
+//var summoners = require('./summoners.json');
 
 
 // Dependencies und modules
@@ -43,6 +44,43 @@ client_twitch.on("connected", function (address, port) {
     console.log("[" + moment().format('LTS') + "] Twitch client verbunden! Frage SummonerIDs an...")
     getSummonerIds();
 });
+
+
+// SummonerIDs erfassen
+
+function getSummonerIds() { // I like this function :3
+
+    api.get('euw1', 'summoner.getBySummonerName', config.channels.followredphoenix.summonername)
+    .then(data => {
+
+      var file = './summoners.json'
+      var obj = {followredphoenix: {name: data.name, id: data.id}}
+
+      jsonfile.writeFileSync(file, obj, {flag: 'a', spaces: 2, EOL: '\r\n'});
+
+      //console.log("[" + moment().format('LTS') + "] Summoner ID für " + summoners.followredphoenix.name + " lautet " + summoners.followredphoenix.id + ".")
+
+    });
+
+    api.get('euw1', 'summoner.getBySummonerName', config.channels.mr4dams.summonername)
+    .then(data => {
+
+      var file = './summoners.json'
+      var obj = {mr4dams: {name: data.name, id: data.id}}
+
+      if(file.hasOwnProperty('33557281')) {
+
+        console.log('Eintrag für mr4dams schon vorhanden!')
+
+      }
+
+      jsonfile.writeFileSync(file, obj, {flag: 'a', spaces: 2, EOL: '\r\n'});
+
+      //console.log("[" + moment().format('LTS') + "] Summoner ID für " + summoners.mr4dams.name + " lautet " + summoners.mr4dams.id + ".")
+
+    });
+
+}
 
 
 // Events
@@ -275,30 +313,3 @@ client_twitch.on("connected", function (address, port) {
         console.log("[" + moment().format('LTS') + "] " + username + " hostet " + channel + " für " + viewers + " Zuschauer!")
       }
   });
-
-
-function getSummonerIds() { // I hate this function :(
-
-    api.get('euw1', 'summoner.getBySummonerName', config.channels.followredphoenix.summonername)
-    .then(data => {
-      console.log("[" + moment().format('LTS') + "] Summoner ID für " + data.name + " lautet " + data.id + ".")
-      
-      var file = './summoners.json'
-      var obj = {followredphoenix: {summonerid: data.id}}
-      
-      jsonfile.writeFileSync(file, obj, {flag: 'a'}, {spaces: 2})
-      
-    });
-
-    api.get('euw1', 'summoner.getBySummonerName', config.channels.mr4dams.summonername)
-    .then(data => {
-      console.log("[" + moment().format('LTS') + "] Summoner ID für " + data.name + " lautet " + data.id + ".")
-      
-      var file = './summoners.json'
-      var obj = {mr4dams: {summonerid: data.id}}
-      
-      jsonfile.writeFileSync(file, obj, {flag: 'a'}, {spaces: 2})
-      
-    });
-
-}

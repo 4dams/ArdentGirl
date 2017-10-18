@@ -1,26 +1,26 @@
 {
 
   "riot_api": {
-    "token": "YOUR_API_KEY_HERE"
+    "token": "RGAPI-4f7ca794-62bd-448b-b31b-f205c915d546"
   },
 
   "twitch": {
-    "username": "YOUR_BOT_USERNAME_HERE",
-    "password": "YOUR_BOT_PASSWORD_HERE",
+    "username": "mr4dams",
+    "password": "oauth:qxyln521o6lwewfaros3thz557jkl0",
     "channels": ["#followredphoenix", "#mr4dams"],
     "delete_links": true
   },
 
   "channels": {
-    "followredphoenix": {
-      "summonername": "YuRedPhoenix",
-      "summonerId": "95457313"
-    },
+      "followredphoenix": {
+        "summonername": "YuRedPhoenix",
+        "summonerId": "95457313"
+      },
 
-    "mr4dams": {
-      "summonername": "SUΡΡORT",
-      "summonerId": "95457313"
+      "mr4dams": {
+        "summonername": "Kemotayy",
+        "summonerId": "95457313"
+      }
     }
-  }
 
 }
