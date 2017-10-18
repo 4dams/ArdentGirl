@@ -1,12 +1,12 @@
 {
 
   "riot_api": {
-    "token": "RGAPI-4f7ca794-62bd-448b-b31b-f205c915d546"
+    "token": "YOUR_API_KEY_HERE"
   },
 
   "twitch": {
-    "username": "mr4dams",
-    "password": "oauth:qxyln521o6lwewfaros3thz557jkl0",
+    "username": "YOUR_BOT_USERNAME_HER",
+    "password": "YOUR_BOT_PASSWORD_HERE",
     "channels": ["#followredphoenix", "#mr4dams"],
     "delete_links": true
   },
