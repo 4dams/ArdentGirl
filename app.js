@@ -14,7 +14,7 @@ var jsonfile = require('jsonfile');
 
 // Optionen
 
-var version = "1.0.49"
+var version = "1.1.12"
 
 var options = {
   options: {
@@ -342,6 +342,14 @@ function getSummonerIds() { // Broken as of now, use config.json instead
         console.log("[" + moment().format('LTS') + "] Twitter requested in " + channel + "!")
       }
 
+      // Discord Command
+      if(message.toLowerCase().startsWith("!discord")) {
+
+        if(self) return
+        client_twitch.action(channel, "[🤖] Feel free to join our Discord server! You can join it via this link: https://discord.gg/DNWmUHS 👾 Or if you just wanna chat with me, you can add me as a friend! My name is 4dams#0001.")
+        console.log("[" + moment().format('LTS') + "] Twitter requested in " + channel + "!")
+      }
+
       // Playlist Command
       if(message.toLowerCase().startsWith("!playlist")) {
         if(self) return
@@ -457,7 +465,6 @@ function getSummonerIds() { // Broken as of now, use config.json instead
         console.log("[" + moment().format('LTS') + "] Zeit requested in " + channel + "!")
       }
 
-    }
 
   });
 
