@@ -3,12 +3,13 @@
 var config = require('./config.json');
 
 
-// Dependencies
+// Dependencies und modules
 
 var tmi = require('tmi.js');
 var moment = require('moment');
 const TeemoJS = require('teemojs');
 let api = TeemoJS(config.riot_api.token);
+var jsonfile = require('jsonfile');
 
 
 // Optionen
@@ -276,18 +277,28 @@ client_twitch.on("connected", function (address, port) {
   });
 
 
-function getSummonerIds() {
+function getSummonerIds() { // I hate this function :(
 
     api.get('euw1', 'summoner.getBySummonerName', config.channels.followredphoenix.summonername)
     .then(data => {
       console.log("[" + moment().format('LTS') + "] Summoner ID für " + data.name + " lautet " + data.id + ".")
-      var channel1_summonerId = data.id;
+      
+      var file = './summoners.json'
+      var obj = {followredphoenix: {summonerid: data.id}}
+      
+      jsonfile.writeFileSync(file, obj, {flag: 'a'}, {spaces: 2})
+      
     });
 
     api.get('euw1', 'summoner.getBySummonerName', config.channels.mr4dams.summonername)
     .then(data => {
       console.log("[" + moment().format('LTS') + "] Summoner ID für " + data.name + " lautet " + data.id + ".")
-      var channel2_summonerId = data.id;
+      
+      var file = './summoners.json'
+      var obj = {mr4dams: {summonerid: data.id}}
+      
+      jsonfile.writeFileSync(file, obj, {flag: 'a'}, {spaces: 2})
+      
     });
 
 }
