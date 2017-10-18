@@ -1,12 +1,10 @@
 # TwitchBot ![PogChamp](https://i.imgur.com/2AEkqhC.gif)
 This is my small personal Twitch-Bot which I run on my own Twitch account.
-</br>
 - [Twitch](https://twitch.tv/mr4dams)
 - Website (WIP!)
 - Lates Release (WIP!)
-</br>
-It got some nice features such as informational commands, fun commands and even League of Legends related commands which grant you a lot of information about a specific Summoner!</br>
-</br>
+It got some nice features such as informational commands, fun commands and even League of Legends related commands which grant you a lot of information about a specific Summoner!  
+  
 *Just a quick note: You will need a [Riot Games API Key](https://developer.riotgames.com) in order to use the League commands!*
 
 # Available Commands
@@ -55,14 +53,14 @@ npm i moment
 npm i teemojs
 ```
 
-Other than that, you will have to adjust some options in the main bot file. </br>
-</br>
+Other than that, you will have to adjust some options in the main bot file.  
+  
 1. Your Riot API token
 2. Your Twitch OAuth token
-</br>
+  
 The Riot API token can be retrieved at https://developer.riotgames.com/.</br>
 Your Twitch OAuth token can be found at https://twitchapps.com/tmi/.</br>
-</br>
+  
 You will then have to fill in your Riot API token in line 6 and your Twitch username and OAuth token in line 21 and 22.
-</br>
+  
 After you have done that, you can simply start the bot with `node app.js` in the directory where the app.js is located in!
