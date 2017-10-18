@@ -96,7 +96,7 @@ function getSummonerIds() { // Broken as of now, use config.json instead
       var channel_summonerId = followredphoenix_summonerId;
 
       // Timeout Links
-      if(message.toLowerCase().startsWith("http")) {
+      if(message.toLowerCase().startsWith("http")) { // Zu event machen
         if (self) return
           if(config.channels.followredphoenix.delete_links == false) return
             client_twitch.timeout(channel, user.username, 1, "Gesendeter Link von " + user.username + " entfernt.")
