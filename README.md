@@ -11,9 +11,6 @@ It got some nice features such as informational commands, fun commands and even 
 - [X] **"!elo" sends current league information about the streamer** *(requires Riot API)*
 - [X] "!info" gives some info about the bot itself
 - [X] "!myelo" a fun command which returns a random elo
-- [X] "!playlist" sends link to the streamers music playlist
-- [X] "!tilt" tells the chat that the streamer gets tilted sometimes
-- [X] "!twitter" sends a link to the users twitter account
 - [X] **"!winrate" calculates a users current winrate and then sends it in chat** *(requires Riot API)*
 - [X] "!zeit" sends the streamers current time
 - [ ] **"!elo `<summoner>`" lets you check the elo of a specific summoner** *(requires Riot API)*

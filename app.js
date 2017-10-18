@@ -31,6 +31,15 @@ var options = {
 }
 
 
+// SummonerID Variables
+
+var followredphoenix_summonerId;
+var followredphoenix_summonerName;
+
+var mr4dams_summonerId;
+var mr4dams_summonerName;
+
+
 // Twitch bot verbinden
 
 var client_twitch = new tmi.client(options);
@@ -41,35 +50,35 @@ client_twitch.connect();
 
 client_twitch.on("connected", function (address, port) {
     console.log("[" + moment().format('LTS') + "] Twitch client verbunden! Frage SummonerIDs an...")
-    //getSummonerIds();
+    getSummonerIds();
 });
 
 
 // SummonerIDs erfassen
 
-//function getSummonerIds() { // Broken as of now, use config.json instead
+function getSummonerIds() { // Broken as of now, use config.json instead
 
     api.get('euw1', 'summoner.getBySummonerName', config.channels.followredphoenix.summonername)
     .then(data => {
 
-      var file = './summoners.json'
-      var obj = {channels: {followredphoenix: {name: data.name, id: data.id}}}
+      //var file = './summoners.json'
+      //var obj = {channels: {followredphoenix: {name: data.name, id: data.id}}}
+      //jsonfile.writeFileSync(file, obj, {flag: 'a', spaces: 2, EOL: '\r\n'});
 
-      jsonfile.writeFileSync(file, obj, {flag: 'a', spaces: 2, EOL: '\r\n'});
-
-      //console.log("[" + moment().format('LTS') + "] Summoner ID für " + summoners.followredphoenix.name + " lautet " + summoners.followredphoenix.id + ".")
+      followredphoenix_summonerId = data.id
+      console.log("[" + moment().format('LTS') + "] Summoner ID für " + data.name + " (" + data.id + ") erfolgreich gespeichert.");
 
     });
 
     api.get('euw1', 'summoner.getBySummonerName', config.channels.mr4dams.summonername)
     .then(data => {
 
-      var file = './summoners.json'
-      var obj = {channels: {mr4dams: {name: data.name, id: data.id}}}
+      //var file = './summoners.json'
+      //var obj = {channels: {mr4dams: {name: data.name, id: data.id}}}
+      //jsonfile.writeFileSync(file, obj, {flag: 'a', spaces: 2, EOL: '\r\n'});
 
-      jsonfile.writeFileSync(file, obj, {flag: 'a', spaces: 2, EOL: '\r\n'});
-
-      //console.log("[" + moment().format('LTS') + "] Summoner ID für " + summoners.mr4dams.name + " lautet " + summoners.mr4dams.id + ".")
+      mr4dams_summonerId = data.id
+      console.log("[" + moment().format('LTS') + "] Summoner ID für " + data.name + " (" + data.id + ") erfolgreich gespeichert.");
 
     });
 
@@ -83,13 +92,8 @@ client_twitch.on("connected", function (address, port) {
 
     if(channel == "#followredphoenix") {
 
-      var channel_summonername = config.channels.followredphoenix.summonername;
-      var channel_summonerId = config.channels.followredphoenix.summonerId;
-
-      //  How to get SummonerID by Summoner Name (Just an example)
-      //
-      //  api.get('euw1', 'summoner.getBySummonerName', 'YuRedPhoenix')
-      //    .then(data => console.log(Die Summoner ID von " + data.name + " lautet " + data.id + ".")
+      var channel_summonerName = followredphoenix_summonerName;
+      var channel_summonerId = followredphoenix_summonerId;
 
       // Timeout Links
       if(message.toLowerCase().startsWith("http")) {
@@ -253,34 +257,41 @@ client_twitch.on("connected", function (address, port) {
         }
       }
 
-    // Purge Command
-    if(message.toLowerCase().startsWith("!purge")) {
-      if(self) return
-        if(user.mod) {
-          var words = message.split(' ');
-          var purge_target = words[1];
-          var command_user = user.username
-          client_twitch.timeout(channel, purge_target, 1, "Alle Nachrichten von " + purge_target + " wurden von " + command_user + " entfernt.")
-          client_twitch.action(channel, "[🤖] Die letzten Nachrichten von " + purge_target + " wurden erfolgreich entfernt. ")
-          console.log("[" + moment().format('LTS') + "] Purge used in " + channel + "!")
-      }
-    }
+      // Purge Command
+      if(message.toLowerCase().startsWith("!purge")) {
+        if(self) return
+          if(user.mod) {
+            var words = message.split(' ');
+            var purge_target = words[1];
+            var command_user = user.username
+            client_twitch.timeout(channel, purge_target, 1, "Alle Nachrichten von " + purge_target + " wurden von " + command_user + " entfernt.")
+            client_twitch.action(channel, "[🤖] Die letzten Nachrichten von " + purge_target + " wurden erfolgreich entfernt. ")
+            console.log("[" + moment().format('LTS') + "] Purge used in " + channel + "!")
+          }
+        }
 
-    // Time Command
-    if(message.toLowerCase().startsWith("!zeit")) {
-      if(self) return
-      client_twitch.action(channel, "Auf meiner Uhr ist es gerade " + moment().format('LTS') + ". 🤔")
-      console.log("[" + moment().format('LTS') + "] Zeit requested in " + channel + "!")
+      // Time Command
+      if(message.toLowerCase().startsWith("!zeit")) {
+        if(self) return
+        client_twitch.action(channel, "Auf meiner Uhr ist es gerade " + moment().format('LTS') + ". 🤔")
+        console.log("[" + moment().format('LTS') + "] Zeit requested in " + channel + "!")
+      }
+
+    if(channel == "#mr4dams") {
+
+      var channel_summonerName = mr4dams_summonerName;
+      var channel_summonerId = mr4dams_summonerId;
+
     }
 
   });
 
   // Cheer Event
   client_twitch.on("cheer", function (channel, userstate, message) {
-      if(channel == "#followredphoenix") {
-        client_twitch.say(channel, "Vielen Dank für deine " + user.bits + " Bits, " + user.username + "! PogChamp")
-        console.log("[" + moment().format('LTS') + "] " + user.bits + " Bits erhalten in " + channel + "!")
-      }
+    if(channel == "#followredphoenix") {
+      client_twitch.say(channel, "Vielen Dank für deine " + user.bits + " Bits, " + user.username + "! PogChamp")
+      console.log("[" + moment().format('LTS') + "] " + user.bits + " Bits erhalten in " + channel + "!")
+    }
   });
 
   // Subscription Event
@@ -301,8 +312,8 @@ client_twitch.on("connected", function (address, port) {
 
   // Hosting Event
   client_twitch.on("hosted", function (channel, username, viewers, autohost) {
-      if(channel == "#followredphoenix") {
-        client_twitch.say(channel, "PogChamp Danke für deinen Host, " + username + "! Deine " + viewers + " Zuschauer sind sehr willkommen! <3")
-        console.log("[" + moment().format('LTS') + "] " + username + " hostet " + channel + " für " + viewers + " Zuschauer!")
-      }
+    if(channel == "#followredphoenix") {
+      client_twitch.say(channel, "PogChamp Danke für deinen Host, " + username + "! Deine " + viewers + " Zuschauer sind sehr willkommen! <3")
+      console.log("[" + moment().format('LTS') + "] " + username + " hostet " + channel + " für " + viewers + " Zuschauer!")
+    }
   });

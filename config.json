@@ -13,13 +13,11 @@
 
   "channels": {
       "followredphoenix": {
-        "summonername": "YuRedPhoenix",
-        "summonerId": "95457313"
+        "summonername": "YuRedPhoenix"
       },
 
       "mr4dams": {
-        "summonername": "Kemotayy",
-        "summonerId": "95457313"
+        "summonername": "Kemotayy"
       }
     }
 
