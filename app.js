@@ -42,7 +42,7 @@ client_twitch.connect();
 
 client_twitch.on("connected", function (address, port) {
     console.log("[" + moment().format('LTS') + "] Twitch client verbunden! Frage SummonerIDs an...")
-    getSummonerIds();
+    //getSummonerIds();
 });
 
 
@@ -56,12 +56,6 @@ function getSummonerIds() { // I like this function :3
       var file = './summoners.json'
       var obj = {channels: {followredphoenix: {name: data.name, id: data.id}}}
 
-      if(file.hasOwnProperty('Yu RedPhoenix')) {
-
-        console.log('Eintrag für followredphoenix schon vorhanden!')
-
-      }
-
       jsonfile.writeFileSync(file, obj, {flag: 'a', spaces: 2, EOL: '\r\n'});
 
       //console.log("[" + moment().format('LTS') + "] Summoner ID für " + summoners.followredphoenix.name + " lautet " + summoners.followredphoenix.id + ".")
@@ -73,12 +67,6 @@ function getSummonerIds() { // I like this function :3
 
       var file = './summoners.json'
       var obj = {channels: {mr4dams: {name: data.name, id: data.id}}}
-
-      if(file.hasOwnProperty('Kemotayy')) {
-
-        console.log('Eintrag für mr4dams schon vorhanden!')
-
-      }
 
       jsonfile.writeFileSync(file, obj, {flag: 'a', spaces: 2, EOL: '\r\n'});
 
