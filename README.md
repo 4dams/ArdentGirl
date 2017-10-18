@@ -1,6 +1,9 @@
 # TwitchBot ![PogChamp](https://i.imgur.com/2AEkqhC.gif)
 This is my small personal Twitch-Bot which I run on my own Twitch account.</br>
 </br>
+- [Twitch](https://twitch.tv/mr4dams)
+- Website (WIP!)
+- Lates Release (WIP!)
 It got some nice features such as informational commands, fun commands and even League of Legends related commands which grant you a lot of information about the Streamer's Summoner!</br>
 </br>
 *Just a quick note: You will need a [Riot Games API Key](https://developer.riotgames.com) in order to use the League commands!*
