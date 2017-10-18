@@ -10,8 +10,8 @@ It got some nice features such as informational commands, fun commands and even 
 ### Riot API Commands *(require Riot API)*
 - [X] **"!elo" sends current league information about the streamer**
 - [X] **"!winrate" calculates a users current winrate and then sends it in chat**
-- [ ] **"!elo `<summoner>`" lets you check the elo of a specific summoner**
-- [ ] **"!winrate `<summoner>`" shows you the winrate of a specific summoner**
+- [ ] **"!checkelo `<summoner>`" lets you check the elo of a specific summoner**
+- [ ] **"!checkwinrate `<summoner>`" shows you the winrate of a specific summoner**
 - [ ] **"!spell `<summoner spell name>`" gives you information about a summoner spell**
 
 
