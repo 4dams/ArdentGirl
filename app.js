@@ -1,7 +1,7 @@
 // Config festlegen
 
 var config = require('./config.json');
-//var summoners = require('./summoners.json');
+var summoners = require('./summoners.json');
 
 
 // Dependencies und modules
@@ -54,7 +54,13 @@ function getSummonerIds() { // I like this function :3
     .then(data => {
 
       var file = './summoners.json'
-      var obj = {followredphoenix: {name: data.name, id: data.id}}
+      var obj = {channels: {followredphoenix: {name: data.name, id: data.id}}}
+
+      if(file.hasOwnProperty('Yu RedPhoenix')) {
+
+        console.log('Eintrag für followredphoenix schon vorhanden!')
+
+      }
 
       jsonfile.writeFileSync(file, obj, {flag: 'a', spaces: 2, EOL: '\r\n'});
 
@@ -66,9 +72,9 @@ function getSummonerIds() { // I like this function :3
     .then(data => {
 
       var file = './summoners.json'
-      var obj = {mr4dams: {name: data.name, id: data.id}}
+      var obj = {channels: {mr4dams: {name: data.name, id: data.id}}}
 
-      if(file.hasOwnProperty('33557281')) {
+      if(file.hasOwnProperty('Kemotayy')) {
 
         console.log('Eintrag für mr4dams schon vorhanden!')
 
