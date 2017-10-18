@@ -477,8 +477,8 @@ function getSummonerIds() { // Broken as of now, use config.json instead
     }
 
     if(channel == "#mr4dams") {
-      client_twitch.say(channel, "Vielen Dank für deine " + user.bits + " Bits, " + user.username + "! PogChamp")
-      console.log("[" + moment().format('LTS') + "] " + user.bits + " Bits erhalten in " + channel + "!")
+      client_twitch.say(channel, "Thank you so much for you " + user.bits + " Bits, " + user.username + "! PogChamp")
+      console.log("[" + moment().format('LTS') + "] " + user.bits + " Bits received in " + channel + "!")
     }
 
   });
@@ -492,8 +492,8 @@ function getSummonerIds() { // Broken as of now, use config.json instead
     }
 
     if(channel == "#mr4dams") {
-      client_twitch.say(channel, "PogChamp " + username + "! Vielen Dank für deinen Sub!")
-      console.log("[" + moment().format('LTS') + "] " + username + " hat " + channel + " abonniert!")
+      client_twitch.say(channel, "PogChamp " + username + "! Thank you for your sub!")
+      console.log("[" + moment().format('LTS') + "] " + username + " just subbed in " + channel + "!")
     }
 
   });
@@ -508,7 +508,7 @@ function getSummonerIds() { // Broken as of now, use config.json instead
 
     if(channel == "#mr4dams") {
       client_twitch.say(channel, "PogChamp " + username + "! Vielen Dank für deinen " + months + "-Monate Resub!")
-      console.log("[" + moment().format('LTS') + "] " + username + " hat " + channel + " für " + months + " Monate abonniert!")
+      console.log("[" + moment().format('LTS') + "] " + username + " just resubbed in " + channel + " for " + months + " months!")
     }
 
   });
@@ -522,8 +522,8 @@ function getSummonerIds() { // Broken as of now, use config.json instead
     }
 
     if(channel == "#mr4dams") {
-      client_twitch.say(channel, "PogChamp Danke für deinen Host, " + username + "! Deine " + viewers + " Zuschauer sind sehr willkommen! <3")
-      console.log("[" + moment().format('LTS') + "] " + username + " hostet " + channel + " für " + viewers + " Zuschauer!")
+      client_twitch.say(channel, "PogChamp Thank you for your host, " + username + "! Your " + viewers + " will have a nice time here! <3")
+      console.log("[" + moment().format('LTS') + "] " + username + " is now hosting " + channel + " for " + viewers + " viewers!")
     }
 
   });
