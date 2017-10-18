@@ -404,7 +404,7 @@ function getSummonerIds() { // Broken as of now, use config.json instead
           "Diamond 1 BigBrother",
           "Master PogChamp",
           "Challenger Keepo"]
-          client_twitch.say(channel, `@` + user.username + ` is only ${elos[Math.floor(elos.length * Math.random())]}`)
+          client_twitch.say(channel, `@` + user.username + ` is barely ${elos[Math.floor(elos.length * Math.random())]}`)
           console.log("[" + moment().format('LTS') + "] Myelo requested in " + channel + "!")
       }
 
