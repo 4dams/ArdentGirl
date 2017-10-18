@@ -7,17 +7,18 @@
   "twitch": {
     "username": "YOUR_BOT_USERNAME_HER",
     "password": "YOUR_BOT_PASSWORD_HERE",
-    "channels": ["#followredphoenix", "#mr4dams"],
-    "delete_links": true
-  },
+    "channels": ["#followredphoenix", "#mr4dams"]
+  }
 
   "channels": {
       "followredphoenix": {
         "summonername": "YuRedPhoenix"
+        "delete_links": false
       },
 
       "mr4dams": {
         "summonername": "Kemotayy"
+        "delete_links": true
       }
     }
 
