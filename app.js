@@ -1,7 +1,6 @@
 // Config festlegen
 
 var config = require('./config.json');
-var summoners = require('./summoners.json');
 
 
 // Dependencies und modules
@@ -48,7 +47,7 @@ client_twitch.on("connected", function (address, port) {
 
 // SummonerIDs erfassen
 
-function getSummonerIds() { // I like this function :3
+//function getSummonerIds() { // Broken as of now, use config.json instead
 
     api.get('euw1', 'summoner.getBySummonerName', config.channels.followredphoenix.summonername)
     .then(data => {
