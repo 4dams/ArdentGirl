@@ -52,6 +52,9 @@ npm i moment
 
 // TeemoJS
 npm i teemojs
+
+// Jsonfile
+npm i jsonfile
 ```
 
 Other than that, you will have to adjust some options in the main bot file.  
