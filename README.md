@@ -33,11 +33,9 @@ It got some nice features such as informational commands, fun commands and even 
 
 # To Do
 
-- "getSummonerIds" with forEach
-- fix "!topchamp" command
 - add commands from list
-- translate main commands into english
 - split commands into seperate file like Nami
+- what happens when a user isn't ranked yet or summoner not found
 
 # Installation
 
