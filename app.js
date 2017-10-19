@@ -49,7 +49,7 @@ client_twitch.connect();
 // Connected?
 
 client_twitch.on("connected", function (address, port) {
-    console.log("[" + moment().format('LTS') + "] Twitch client verbunden! Frage SummonerIDs an...")
+    console.log("[" + moment().format('LTS') + "] Twitch client connected! requesting summoner ids...")
     getSummonerIds();
 });
 
@@ -66,7 +66,7 @@ function getSummonerIds() { // Temporarily stores data everytime the bot is load
       //jsonfile.writeFileSync(file, obj, {flag: 'a', spaces: 2, EOL: '\r\n'});
 
       followredphoenix_summonerId = data.id
-      console.log("[" + moment().format('LTS') + "] Summoner ID für " + data.name + " (" + data.id + ") erfolgreich gespeichert.");
+      console.log("[" + moment().format('LTS') + "] Summoner ID for " + data.name + " (" + data.id + ") saved successfully.");
 
     });
 
@@ -78,7 +78,7 @@ function getSummonerIds() { // Temporarily stores data everytime the bot is load
       //jsonfile.writeFileSync(file, obj, {flag: 'a', spaces: 2, EOL: '\r\n'});
 
       mr4dams_summonerId = data.id
-      console.log("[" + moment().format('LTS') + "] Summoner ID für " + data.name + " (" + data.id + ") erfolgreich gespeichert.");
+      console.log("[" + moment().format('LTS') + "] Summoner ID for " + data.name + " (" + data.id + ") saved successfully.");
 
     });
 
