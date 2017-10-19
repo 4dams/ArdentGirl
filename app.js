@@ -56,7 +56,7 @@ client_twitch.on("connected", function (address, port) {
 
 // SummonerIDs erfassen
 
-function getSummonerIds() { // Broken as of now, use config.json instead
+function getSummonerIds() { // Temporarily stores data everytime the bot is loaded up, as of now.
 
     api.get('euw1', 'summoner.getBySummonerName', config.channels.followredphoenix.summonername)
     .then(data => {
