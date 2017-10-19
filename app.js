@@ -66,6 +66,7 @@ function getSummonerIds() { // Temporarily stores data everytime the bot is load
       //jsonfile.writeFileSync(file, obj, {flag: 'a', spaces: 2, EOL: '\r\n'});
 
       followredphoenix_summonerId = data.id
+      followredphoenix_summonerName = data.name
       console.log("[" + moment().format('LTS') + "] Summoner ID for " + data.name + " (" + data.id + ") saved successfully.");
 
     });
@@ -78,6 +79,7 @@ function getSummonerIds() { // Temporarily stores data everytime the bot is load
       //jsonfile.writeFileSync(file, obj, {flag: 'a', spaces: 2, EOL: '\r\n'});
 
       mr4dams_summonerId = data.id
+      mr4dams_summonerName = data.name
       console.log("[" + moment().format('LTS') + "] Summoner ID for " + data.name + " (" + data.id + ") saved successfully.");
 
     });
