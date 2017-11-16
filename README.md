@@ -28,6 +28,7 @@ It got some nice features such as informational commands, fun commands and even 
 - [ ] "!addcommand `<trigger> <response>`" lets you add a new command via chat
 - [ ] "!chatstats" or "!emotestats" to see how much a specific emote/string has been used
 - [ ] "!permit" permit users to post links (the bot will otherwise delete all links)
+- [ ] "!setsummoner" to save info about a channels default summoner
 
 *Note: Those commands have been adjusted for one special streamer but you can change and adjust them as much as you want, even though they're in german.*
 
