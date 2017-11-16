@@ -55,10 +55,11 @@ npm i teemojs
 npm i jsonfile
 ```
 
-Other than that, you will have to adjust some options in the main bot file.  
+Other than that, you will have a file called "config.json" where you can set all your information such as:  
   
 1. Your Riot API token
 2. Your Twitch OAuth token
+3. Channel names
   
 The Riot API token can be retrieved at https://developer.riotgames.com/.</br>
 Your Twitch OAuth token can be found at https://twitchapps.com/tmi/.</br>
