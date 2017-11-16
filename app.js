@@ -107,10 +107,42 @@ function getSummonerIds() { // Temporarily stores data everytime the bot is load
       // Elo Command
       if(message.toLowerCase().startsWith("!elo")) {
         if(self) return
+        
+        var elo = "Unranked"
+        
         api.get('euw1', 'league.getAllLeaguePositionsForSummoner', channel_summonerId)
-          .then(infoXD => {
-            let entry = infoXD.find(e => e.queueType === 'RANKED_SOLO_5x5');
-            client_twitch.action(channel, '[🤖] ' + entry.playerOrTeamName + ' ist momentan ' + entry.tier + ' ' + entry.rank + ' mit ' + entry.leaguePoints + ' LP. Schreibe "!winrate" in den Chat, für mehr Informationen!');
+          .then(info => {
+            let entry = info.find(e => e.queueType === 'RANKED_SOLO_5x5');
+          
+            if(entry.tier == "BRONZE") {
+              var elo = "Bronze" 
+            }
+          
+            if(entry.tier == "SILVER") {
+              var elo = "Silver" 
+            }
+          
+            if(entry.tier == "GOLD") {
+              var elo = "Gold" 
+            }
+          
+            if(entry.tier == "PLATINUM") {
+              var elo = "Platinum" 
+            }
+          
+            if(entry.tier == "DIAMOND") {
+              var elo = "Diamond" 
+            }
+          
+            if(entry.tier == "MASTER") {
+              var elo = "Master" 
+            }
+          
+            if(entry.tier == "CHALLENGER") {
+              var elo = "Challenger" 
+            }
+          
+            client_twitch.action(channel, '[🤖] ' + entry.playerOrTeamName + ' ist momentan ' + elo + ' ' + entry.rank + ' mit ' + entry.leaguePoints + ' LP. Schreibe "!winrate" in den Chat, für mehr Informationen!');
         });
         console.log("[" + moment().format('LTS') + "] Elo requested in " + channel + "!")
       }
