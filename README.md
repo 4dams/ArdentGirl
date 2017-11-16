@@ -16,7 +16,6 @@ It got some nice features such as informational commands, fun commands and even 
 - [ ] **"!checkelo `<summoner>`" lets you check the elo of a specific summoner**
 - [ ] **"!checkwinrate `<summoner>`" shows you the winrate of a specific summoner**
 - [ ] **"!spell `<champion name> <spell key>`" gives you information about a champions spell**
-> Needs list with all champion names and ids
 
 
 ### Default Commands
