@@ -2,7 +2,7 @@
 This is my small personal Twitch-Bot which I run on my own Twitch account.
 - [Twitch](https://twitch.tv/mr4dams)
 - Website/Command lists (WIP!)
-- Lates Release (WIP!)  
+- Latest Release (WIP!)  
   
 It got some nice features such as informational commands, fun commands and even League of Legends related commands which grant you a lot of information about a specific Summoner!  
   
@@ -34,8 +34,9 @@ It got some nice features such as informational commands, fun commands and even 
 # To Do
 
 - add commands from list
-- split commands into seperate file like Nami
+- split commands into seperate files like Nami (file system in general)
 - what happens when a user isn't ranked yet or summoner not found
+- highest elo depending on queue type, also name queue type
 
 # Installation
 
