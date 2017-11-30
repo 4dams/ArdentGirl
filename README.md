@@ -39,6 +39,7 @@ It got some nice features such as informational commands, fun commands and even 
 - what happens when a user isn't ranked yet or summoner not found
 - highest elo depending on queue type, also name queue type
 - split bot and website/command lists into seperate folders
+- get summoner ids with foreach of array config.blabla
 
 # Installation
 
