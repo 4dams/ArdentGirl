@@ -1,25 +1,24 @@
 {
 
   "riot_api": {
-    "token": "YOUR_API_KEY_HERE"
+    "token": "api key"
   },
 
   "twitch": {
-    "username": "YOUR_BOT_USERNAME_HER",
-    "password": "YOUR_BOT_PASSWORD_HERE",
-    "channels": ["#followredphoenix", "#mr4dams"]
+    "username": "username",
+    "password": "oauth token",
+    "channels": ["#red_phoenixlol"]
   },
 
-  "channels": {
-      "followredphoenix": {
-        "summonername": "YuRedPhoenix",
-        "delete_links": false
-      },
+  "channel": {
+    "name": "#red_phoenixlol",
+    "summonername": "GG RedPhoenix",
+    "delete_links": false,
+    "prefix": "[❤️] "
+  },
 
-      "mr4dams": {
-        "summonername": "Kemotayy",
-        "delete_links": true
-      }
-    }
+  "counter": {
+    "tilt": 0
+  }
 
 }
