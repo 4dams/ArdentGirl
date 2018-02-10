@@ -1,4 +1,6 @@
-# 4dams' TwitchBot ![PogChamp](https://i.imgur.com/2AEkqhC.gif)
+![Preview](http://i.4da.ms/cmwYGZ.gif)
+
+# 4dams' TwitchBot
 This is my small personal Twitch-Bot which I run on my own Twitch account.
 - [Twitch](https://twitch.tv/mr4dams)
 - Website/Command lists (WIP!)
