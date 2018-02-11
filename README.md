@@ -18,7 +18,7 @@ It got some nice features such as informational commands, fun commands and even 
 - [X] "!topchamps" displays a summoners top 3 champions (name, level and mastery score)
 - [X] "!rank1" shows some info about the defined servers Rank 1 Challenger
 - [X] "!status" provides a list of League's server status and warning, if there are any
-- [X] "!livegame" displays info about streamer's game (runes still wip)
+- [X] "!livegame" displays info about the streamers current game (runes wip)
 
 
 ### Default Commands
