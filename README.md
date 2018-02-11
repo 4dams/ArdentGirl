@@ -73,3 +73,7 @@ Your Twitch OAuth token can be found at https://twitchapps.com/tmi/.</br>
 You will then have to fill in your tokens and other information into the `config.json`.
   
 After you have done that, you can simply start the bot with `node app.js` in the directory where the app.js is located in!
+
+### Disclaimer
+
+>4dams' TwitchBot isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
