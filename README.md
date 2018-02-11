@@ -15,9 +15,7 @@ It got some nice features such as informational commands, fun commands and even 
 ### League Commands *(require Riot API)
 - [X] "!elo" sends current league information about the streamer
 - [X] "!winrate" calculates a users current winrate and then sends it in chat
-- [ ] "!checkelo `<summoner>`" lets you check the elo of a specific summoner
-- [ ] "!checkwinrate `<summoner>`" shows you the winrate of a specific summoner
-- [ ] "!spell `<champion name> <spell key>`" gives you information about a champions spell
+- [X] "!topchamps" displays a summoners top 3 champions (name, level and mastery score)
 
 
 ### Default Commands
