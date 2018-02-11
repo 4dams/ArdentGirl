@@ -1,6 +1,5 @@
-![Preview](https://d3aqoihi2n8ty8.cloudfront.net/actions/mrdestructoid/light/animated/5000/4.gif)
 
-# TwitchBot
+# TwitchBot ![Preview](https://d3aqoihi2n8ty8.cloudfront.net/actions/mrdestructoid/light/animated/5000/1.gif)
 This is my small personal Twitch-Bot which I run on my own Twitch account.
 - [Twitch](https://twitch.tv/mr4dams)
 - Website/Command lists (WIP!)
