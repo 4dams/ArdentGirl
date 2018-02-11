@@ -16,7 +16,6 @@ var api = TeemoJS(config.riot_api.token);
 // Optionen
 
 var version = "1.1.12"
-var game_version = "8.1.1"
 
 var options = {
   options: {
@@ -40,6 +39,8 @@ var channel_sn;
 var prefix = config.channel.prefix;
 var api_key = config.riot_api.token;
 var championList;
+var challengerLeague;
+var game_version;
 
 // Twitch bot verbinden
 
@@ -50,9 +51,11 @@ twitch.connect();
 // Connected?
 
 twitch.on("connected", function (address, port) {
-    console.log("[" + moment().format('LTS') + "] Twitch client connected! requesting summoner ids...")
-    getSummonerIds();
-    getChampionList();
+  console.log("[" + moment().format('LTS') + "] Twitch client connected! requesting summoner ids...")
+  getSummonerIds();
+  getChampionList();
+  getChallengerLeague();
+  getCurrentGameVersion();
 });
 
 
@@ -76,52 +79,248 @@ function getQueueName(queueType) {
 }
 
 function getChampionName(id) {
-
-    for (var i in championList) {
-
-      if (championList[i].key == id) {
-        return championList[i].id;
-      }
-
-      //console.log(championList[i].id + " | " + championList[i].key);
+  for (var i in championList) {
+    if (championList[i].key == id) {
+      return championList[i].id;
     }
+  }
 }
 
 function getChampionTitle(id) {
-
-    for (var i in championList) {
-
-      if (championList[i].key == id) {
-        return championList[i].title;
-      }
-
+  for (var i in championList) {
+    if (championList[i].key == id) {
+      return championList[i].title;
     }
+  }
 }
 
+function getWinrate(wins, losses) {
+  var winrate = wins / (wins + losses) * 100
+  var rounded = Math.round(winrate * 100) / 100
+  return rounded;
+}
+
+function sortNumber(a, b) {
+  return b.leaguePoints - a.leaguePoints;
+}
+
+function getCurrentGameVersion() {
+  request('https://euw1.api.riotgames.com/lol/static-data/v3/versions' + "?api_key=" + api_key, function (error, response, body) {
+    var versions = JSON.parse(body);
+    game_version = versions[0];
+    console.log(game_version);
+  });
+}
+
+function getMapName(id) {
+
+  if (id == 1) {
+    return "Summoner's Rift";
+  }
+
+  if (id == 2) {
+    return "Summoner's Rift";
+  }
+
+  if (id == 3) {
+    return "The Proving Grounds";
+  }
+
+  if (id == 4) {
+    return "Twisted Treeline";
+  }
+
+  if (id == 8) {
+    return "The Crystal Scar";
+  }
+
+  if (id == 10) {
+    return "Twisted Treeline";
+  }
+
+  if (id == 11) {
+    return "Summoner's Rift";
+  }
+
+  if (id == 12) {
+    return "Howling Abyss";
+  }
+
+  if (id == 14) {
+    return "Butcher's Bridge";
+  }
+
+  if (id == 16) {
+    return "Cosmic Ruins";
+  }
+
+  if (id == 18) {
+    return "Valoran City Park";
+  }
+
+  if (id == 19) {
+    return "Substructure 43";
+  }
+
+}
+
+function getQueueName(id) {
+
+  if(id == 0) {
+    return "Custom Game";
+  }
+
+  if(id == 76) {
+    return "Ultra Rapid Fire";
+  }
+
+  if(id == 100) {
+    return "5v5 ARAM";
+  }
+
+  if(id == 400) {
+    return "5v5 Draft Pick";
+  }
+
+  if(id == 420) {
+    return "5v5 Ranked Solo";
+  }
+
+  if(id == 430) {
+    return "5v5 Blind Pick";
+  }
+
+  if(id == 440) {
+    return "5v5 Ranked Flex";
+  }
+
+  if(id == 450) {
+    return "5v5 ARAM";
+  }
+
+  if(id == 460) {
+    return "3v3 Blind Pick";
+  }
+
+  if(id == 470) {
+    return "3v3 Ranked Flex";
+  }
+
+  if(id == 600) {
+    return "Blood Hunt Assassin";
+  }
+
+  if(id == 900) {
+    return "ARURF games";
+  }
+
+  if(id == 920) {
+    return "Legend of the Poro King";
+  }
+
+  if(id == 920) {
+    return "Legend of the Poro King";
+  }
+
+  /*
+      Yes, there are IDs missing... All can be found at the Riot API Static Data
+  */
+
+}
+
+function getTeamName(id) {
+
+  if(id == 100) {
+    return "Blue";
+  }
+
+  if(id == 200) {
+    return "Red";
+  }
+
+}
+
+function getSpellName(id) {
+
+  if(id == 21) {
+    return "Barrier";
+  }
+
+  if(id == 1) {
+    return "Cleanse";
+  }
+
+  if(id == 14) {
+    return "Ignite";
+  }
+
+  if(id == 3) {
+    return "Exhaust";
+  }
+
+  if(id == 4) {
+    return "Flash";
+  }
+
+  if(id == 6) {
+    return "Ghost";
+  }
+
+  if(id == 7) {
+    return "Heal";
+  }
+
+  if(id == 13) {
+    return "Clarity";
+  }
+
+  if(id == 30) {
+    return "To The King!";
+  }
+
+  if(id == 31) {
+    return "Poro Toss";
+  }
+
+  if(id == 11) {
+    return "Smite";
+  }
+
+  if(id == 32) {
+    return "Snowball";
+  }
+
+  if(id == 12) {
+    return "Teleport";
+  }
+
+}
 
 // SummonerIDs erfassen
 
 function getSummonerIds() {
-
-    api.get('euw1', 'summoner.getBySummonerName', config.channel.summonername)
-    .then(data => {
-
-      channel_sid = data.id
-      channel_sn = data.name
-      console.log("[" + moment().format('LTS') + "] Summoner ID for " + data.name + " (" + data.id + ") saved successfully.");
-
-    });
-
+  api.get('euw1', 'summoner.getBySummonerName', config.channel.summonername)
+  .then(data => {
+    channel_sid = data.id
+    channel_sn = data.name
+    console.log("[" + moment().format('LTS') + "] Summoner ID for " + data.name + " (" + data.id + ") saved successfully.");
+  });
 }
 
 function getChampionList() {
   request('http://ddragon.leagueoflegends.com/cdn/' + game_version + '/data/de_DE/champion.json', function (error, response, body) {
-
     var list = JSON.parse(body);
     championList = list.data;
-
     console.log("[" + moment().format('LTS') + "] Champion list saved successfully.");
+  });
+}
 
+function getChallengerLeague() {
+  request("https://euw1.api.riotgames.com/lol/" + "league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5" + "?api_key=" + api_key, function (error, response, body) {
+    var league = JSON.parse(body);
+    data = league.entries;
+    challengerLeague = data.sort(sortNumber);
+    console.log("[" + moment().format('LTS') + "] Challenger League saved successfully.");
   });
 }
 
@@ -135,7 +334,6 @@ function getChampionList() {
       // Response on bot name
       if(message.toLowerCase().includes("ardentgirl") || message.toLowerCase().includes("ardent girl") || message.toLowerCase().includes("ardentgiri") || message.toLowerCase().includes("ardent giri")) {
         if(self) return
-
         let responses = [
           "Na, wie geht's? 😘",
           "Wie kann ich dir helfen?",
@@ -146,7 +344,6 @@ function getChampionList() {
           "💋",
           "Probier's doch mal mit \"!commands\""
         ]
-
         twitch.say(channel, `${responses[Math.floor(responses.length * Math.random())]}`)
       }
 
@@ -159,11 +356,12 @@ function getChampionList() {
 
       // Elo Command
       if(message.toLowerCase().startsWith("!elo")) {
+
         if(self) return
 
         let requestMap = "https://euw1.api.riotgames.com/lol/" + "league/v3/positions/by-summoner/" + channel_sid + "?api_key=" + api_key;
-
         request(requestMap, function (error, response, body) {
+
           console.log('Error: ', error);
           console.log('StatusCode: ', response && response.statusCode);
 
@@ -179,8 +377,6 @@ function getChampionList() {
             twitch.action(channel, prefix + obj[0].playerOrTeamName + ' ist momentan ' + elo + ' ' + obj[0].rank + ' mit ' + obj[0].leaguePoints + ' LP. (' + queue + ')');
             twitch.action(channel, prefix + ' Für mehr Informationen, probiere es mit !winrate und !topchamps');
           }
-
-          /* ... */
 
         });
         console.log("[" + moment().format('LTS') + "] Elo requested in " + channel + "!")
@@ -227,18 +423,179 @@ function getChampionList() {
 
       // Winrate Command
       if(message.toLowerCase().startsWith("!winrate")) {
-        if(self) return
-        api.get('euw1', 'league.getAllLeaguePositionsForSummoner', channel_sid)
-        .then(data => {
-          let entry = data.find(e => e.queueType === 'RANKED_SOLO_5x5');
-          var q_wins = entry.wins
-          var q_losses = entry.losses
-          var q_winrate = q_wins / (q_wins + q_losses) * 100
-          var q_winrate_rounded = Math.round(q_winrate * 100) / 100
-          twitch.action(channel, prefix + entry.playerOrTeamName + " hat eine Winrate von " + q_winrate_rounded + "%. (" + q_wins + " W / " + q_losses + " L)")
-          console.log("[" + moment().format('LTS') + "] Winrate requested in " + channel + "!")
+
+        let requestMap = "https://euw1.api.riotgames.com/lol/" + "league/v3/positions/by-summoner/" + channel_sid + "?api_key=" + api_key;
+
+        request(requestMap, function (error, response, body) {
+          console.log('Error: ', error);
+          console.log('StatusCode: ', response && response.statusCode);
+
+          let obj = JSON.parse(body);
+
+          if (response.statusCode !== 200) {
+            twitch.action(channel, prefix + "Entschuldigung, ich konnte leider keine Informationen abfragen! (Fehler: " + response.statusCode + ")");
+          } else {
+
+            var q_wins = obj[0].wins
+            var q_losses = obj[0].losses
+            var q_winrate = q_wins / (q_wins + q_losses) * 100
+            var q_winrate_rounded = Math.round(q_winrate * 100) / 100
+
+            let queue = getQueueName(obj[0].queueType);
+
+            twitch.action(channel, prefix + obj[0].playerOrTeamName + ' hat eine Winrate von ' + q_winrate_rounded + '% mit insgesamt ' + q_wins + ' gewonnenen und ' + q_losses + ' verlorenen Spielen. (' + queue + ')');
+          }
+
+          /* ... */
+
         });
       }
+
+      // Level Commands
+      if(message.toLowerCase().startsWith("!level")) {
+
+        let requestMap = "https://euw1.api.riotgames.com/lol/" + "summoner/v3/summoners/" + channel_sid + "?api_key=" + api_key;
+
+        request(requestMap, function (error, response, body) {
+          console.log('Error: ', error);
+          console.log('StatusCode: ', response && response.statusCode);
+
+          let obj = JSON.parse(body);
+
+          if (response.statusCode !== 200) {
+            twitch.action(channel, prefix + "Entschuldigung, ich konnte leider keine Informationen abfragen! (Fehler: " + response.statusCode + ")");
+          } else {
+
+            let level = obj.summonerLevel
+
+            twitch.action(channel, prefix + obj.name + ' ist im Moment Level ' + level + '.');
+          }
+
+          /* ... */
+
+        });
+      }
+
+      // Rank1 Commands
+      if(message.toLowerCase().startsWith("!rank1")) {
+
+        let requestMap = "https://euw1.api.riotgames.com/lol/" + "league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5" + "?api_key=" + api_key;
+
+        request(requestMap, function (error, response, body) {
+          console.log('Error: ', error);
+          console.log('StatusCode: ', response && response.statusCode);
+
+          let obj = JSON.parse(body);
+
+          if (response.statusCode !== 200) {
+            twitch.action(channel, prefix + "Entschuldigung, ich konnte leider keine Informationen abfragen! (Fehler: " + response.statusCode + ")");
+          } else {
+
+            //let rank1 = obj.entries[0];
+            let rank1 = challengerLeague[0];
+
+            let wins = rank1.wins;
+            let losses = rank1.losses;
+            let winrate = getWinrate(wins, losses);
+
+            twitch.action(channel, prefix + rank1.playerOrTeamName + ' ist Momentan Rank 1 auf EUW als Challenger mit ' + numberize(rank1.leaguePoints) + ' LP und einer Winrate von ' + winrate + '% (' + wins + 'W/' + losses + 'L).');
+          }
+
+          /* ... */
+
+        });
+      }
+
+      // Status Commands
+      if(message.toLowerCase().startsWith("!status")) {
+
+        let requestMap = "https://euw1.api.riotgames.com/lol/" + "status/v3/shard-data" + "?api_key=" + api_key;
+
+        request(requestMap, function (error, response, body) {
+          console.log('Error: ', error);
+          console.log('StatusCode: ', response && response.statusCode);
+
+          let obj = JSON.parse(body);
+
+          if (response.statusCode !== 200) {
+            twitch.action(channel, prefix + "Entschuldigung, ich konnte leider keine Informationen abfragen! (Fehler: " + response.statusCode + ")");
+          } else {
+
+            var incident_count = 0;
+            var all_incidents = [];
+
+            let services = obj.services;
+
+            for (var service in services) {
+              var entry = services[service];
+              // console.log(entry.name);
+              // console.log(entry.status);
+
+              if (entry.incidents.length > 0) {
+                let incidents = entry.incidents;
+                incidents.forEach(e => {
+                  incident_count++;
+                  console.log(entry.name + ':');
+                  console.log(e.updates[0].content);
+                  all_incidents.push(entry.name + ': ' + e.updates[0].content)
+                });
+              }
+            }
+
+            if (incident_count > 0) {
+              twitch.action(channel, prefix + 'Es liegen momentan ' + incident_count.toString() + ' Warnungen vor: ');
+              all_incidents.forEach(e => {
+                twitch.action(channel, prefix + e);
+              });
+            } else {
+              twitch.action(channel, prefix + 'Es liegen im Moment keine Warnungen vor! Alle Systeme laufen wie geplant. GLHF!')
+            }
+          }
+
+          /* ... */
+
+        });
+      }
+
+
+      // Level Commands
+      if(message.toLowerCase().startsWith("!livegame")) {
+
+        let requestMap = "https://euw1.api.riotgames.com/lol/" + "spectator/v3/active-games/by-summoner/" + channel_sid + "?api_key=" + api_key;
+
+        request(requestMap, function (error, response, body) {
+          console.log('Error: ', error);
+          console.log('StatusCode: ', response && response.statusCode);
+
+          let obj = JSON.parse(body);
+
+          if (response.statusCode !== 200) {
+            twitch.action(channel, prefix + "Entschuldigung, ich konnte leider keine Informationen abfragen! (Fehler: " + response.statusCode + ")");
+          } else {
+
+            var participant;
+            var startTime = obj.gameStartTime;
+            var now = Date.now();
+            var secondsInGame = (now-startTime)/1000
+
+            var minutes = Math.floor(secondsInGame / 60);
+            var seconds = Math.round(secondsInGame - minutes * 60);
+
+            var timeInGame = minutes + ':' + seconds;
+
+
+            obj.participants.forEach(p => {
+              if (p.summonerName == channel_sn) {
+                participant = p;
+              }
+            });
+
+            twitch.action(channel, prefix + channel_sn + ' befindet sich seit ' + minutes + ' Minuten und ' + seconds + ' Sekunden ingame. | Queue: ' + getQueueName(obj.gameQueueConfigId) + ' | Map: ' + getMapName(obj.mapId) + ' | Team: ' + getTeamName(participant.teamId) + ' | Champion: ' + getChampionName(participant.championId) + ' | Spells: ' + getSpellName(participant.spell1Id) + ' und ' + getSpellName(participant.spell2Id) + '.');
+          }
+
+        });
+      }
+
 
       // Info Command
       if(message.toLowerCase().startsWith("!info")) {
@@ -273,7 +630,7 @@ function getChampionList() {
       // Command Lists
       if(message.toLowerCase().startsWith("!commands")) {
         if(self) return
-        twitch.action(channel, prefix + "Verfügbare Commands: !commands, !elo, !winrate, !topchamps, !info, !myelo, !playlist, !tilt, !twitter, !8ball und !zeit.")
+        twitch.action(channel, prefix + "Verfügbare Commands: !commands, !elo, !winrate, !topchamps, !rank1, !status, !livegame, !info, !myelo, !playlist, !tilt, !twitter, !8ball und !zeit.")
         twitch.action(channel, prefix + "Weitere Commands für Moderatoren und Subs können abgerufen werden mit !modcommands und !subcommands.")
         console.log("[" + moment().format('LTS') + "] Commands requested in " + channel + "!")
       }
