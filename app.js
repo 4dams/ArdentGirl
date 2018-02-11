@@ -7,7 +7,6 @@ var config = require('./config.json');
 
 var tmi = require('tmi.js');
 var moment = require('moment');
-var jsonfile = require('jsonfile');
 var request = require('request');
 var TeemoJS = require('teemojs');
 var api = TeemoJS(config.riot_api.token);
@@ -51,11 +50,15 @@ twitch.connect();
 // Connected?
 
 twitch.on("connected", function (address, port) {
-  console.log("[" + moment().format('LTS') + "] Twitch client connected! requesting summoner ids...")
-  getSummonerIds();
-  getChampionList();
-  getChallengerLeague();
+  console.log("[" + moment().format('LTS') + "] Twitch client connected! requesting summoner ids...");
   getCurrentGameVersion();
+
+  setTimeout(function () {
+    getSummonerIds();
+    getChampionList();
+    getChallengerLeague();
+  }, 3000);
+
 });
 
 
@@ -108,7 +111,7 @@ function getCurrentGameVersion() {
   request('https://euw1.api.riotgames.com/lol/static-data/v3/versions' + "?api_key=" + api_key, function (error, response, body) {
     var versions = JSON.parse(body);
     game_version = versions[0];
-    console.log(game_version);
+    console.log("[" + moment().format('LTS') + "] Game version set to: " + game_version);
   });
 }
 
@@ -570,7 +573,7 @@ function getChallengerLeague() {
           let obj = JSON.parse(body);
 
           if (response.statusCode !== 200) {
-            twitch.action(channel, prefix + "Entschuldigung, ich konnte leider keine Informationen abfragen! (Fehler: " + response.statusCode + ")");
+            twitch.action(channel, prefix + "Entschuldigung, ich konnte leider keine Informationen abfragen! Bist du dir sicher, dass " + channel_sn + " ingame ist?");
           } else {
 
             var participant;
