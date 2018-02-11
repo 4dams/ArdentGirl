@@ -52,9 +52,9 @@ twitch.connect();
 twitch.on("connected", function (address, port) {
   console.log("[" + moment().format('LTS') + "] Twitch client connected! requesting summoner ids...");
   getCurrentGameVersion();
+  getSummonerIds();
 
   setTimeout(function () {
-    getSummonerIds();
     getChampionList();
     getChallengerLeague();
   }, 3000);
@@ -109,9 +109,17 @@ function sortNumber(a, b) {
 
 function getCurrentGameVersion() {
   request('https://euw1.api.riotgames.com/lol/static-data/v3/versions' + "?api_key=" + api_key, function (error, response, body) {
-    var versions = JSON.parse(body);
-    game_version = versions[0];
-    console.log("[" + moment().format('LTS') + "] Game version set to: " + game_version);
+
+    console.log(body)
+
+    if (response.statusCode == 200) {
+      var versions = JSON.parse(body);
+      game_version = versions[0];
+      console.log("[" + moment().format('LTS') + "] Game version set to: " + game_version);
+    } else {
+      console.log("FATAL ERROR")
+    }
+
   });
 }
 
@@ -302,12 +310,22 @@ function getSpellName(id) {
 // SummonerIDs erfassen
 
 function getSummonerIds() {
-  api.get('euw1', 'summoner.getBySummonerName', config.channel.summonername)
-  .then(data => {
-    channel_sid = data.id
-    channel_sn = data.name
-    console.log("[" + moment().format('LTS') + "] Summoner ID for " + data.name + " (" + data.id + ") saved successfully.");
+
+  let requestMap = "https://euw1.api.riotgames.com/lol/" + "summoner/v3/summoners/by-name/" + config.channel.summonername + "?api_key=" + api_key;
+
+  request(requestMap, function (error, response, body) {
+    console.log('Error: ', error);
+    console.log('StatusCode: ', response && response.statusCode);
+
+    let obj = JSON.parse(body);
+
+    channel_sid = obj.id;
+    channel_sn = obj.name;
+
+    console.log("[" + moment().format('LTS') + "] Summoner ID for " + channel_sn + " (" + channel_sid + ") saved successfully.");
+
   });
+
 }
 
 function getChampionList() {
