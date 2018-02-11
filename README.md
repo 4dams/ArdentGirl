@@ -1,6 +1,6 @@
 ![Preview](http://i.4da.ms/cmwYGZ.gif)
 
-# 4dams' TwitchBot
+# TwitchBot
 This is my small personal Twitch-Bot which I run on my own Twitch account.
 - [Twitch](https://twitch.tv/mr4dams)
 - Website/Command lists (WIP!)
@@ -10,9 +10,9 @@ It got some nice features such as informational commands, fun commands and even 
   
 *Just a quick note: You will need a [Riot Games API Key](https://developer.riotgames.com) in order to use the League commands!*
 
-# Available Commands
+## Available Commands
 
-### League Commands *(require Riot API)
+### League Commands
 - [X] "!elo" sends current league information about the streamer
 - [X] "!winrate" calculates a users current winrate and then sends it in chat
 - [X] "!topchamps" displays a summoners top 3 champions (name, level and mastery score)
@@ -35,18 +35,11 @@ It got some nice features such as informational commands, fun commands and even 
 
 *Note: Those commands have been adjusted for one special streamer but you can change and adjust them as much as you want, even though they're in german.*
 
-# To Do
+## To Do
 
-- add commands from list
-- split commands into seperate files like Nami (file system in general)
-- what happens when a user isn't ranked yet or summoner not found
-- highest elo depending on queue type, also name queue type
-- split bot and website/command lists into seperate folders
-- get summoner ids with foreach of array config.blabla (use foreach for multiple stuff, also like connecting to channels)
+- Split commands into single files
 
-# Installation
-
-To run this bot, you have to have [Node.js](https://nodejs.org/en/) installed on the machine you're running the bot on. Other than that, you will need a few modules. There's a list of all modules below.
+## Installation
 
 ```
 // Tmi.js
@@ -55,11 +48,8 @@ npm i tmi.js
 // Moment.js
 npm i moment
 
-// TeemoJS
-npm i teemojs
-
-// Jsonfile
-npm i jsonfile
+// Request
+npm i request
 ```
 
 Other than that, you will have a file called "config.json" where you can set all your information such as:  
@@ -75,6 +65,6 @@ You will then have to fill in your tokens and other information into the `config
   
 After you have done that, you can simply start the bot with `node app.js` in the directory where the app.js is located in!
 
-### Disclaimer
+## Disclaimer
 
 >4dams' TwitchBot isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
