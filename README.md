@@ -16,6 +16,7 @@ It got some nice features such as informational commands, fun commands and even 
 - [X] "!elo" sends current league information about the streamer
 - [X] "!winrate" calculates a users current winrate and then sends it in chat
 - [X] "!topchamps" displays a summoners top 3 champions (name, level and mastery score)
+- [X] "!rank1" shows some info about the defined servers Rank 1 Challenger
 
 
 ### Default Commands
