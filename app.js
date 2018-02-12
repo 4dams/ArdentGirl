@@ -117,7 +117,7 @@ function getCurrentGameVersion() {
       game_version = versions[0];
       console.log("[" + moment().format('LTS') + "] Game version set to: " + game_version);
     } else {
-      console.log("FATAL ERROR")
+      console.log("[" + moment().format('LTS') + "] FATAL ERROR | RATE LIMIT EXCEEDED?")
     }
 
   });
@@ -314,8 +314,6 @@ function getSummonerIds() {
   let requestMap = "https://euw1.api.riotgames.com/lol/" + "summoner/v3/summoners/by-name/" + config.channel.summonername + "?api_key=" + api_key;
 
   request(requestMap, function(error, response, body) {
-    console.log('Error: ', error);
-    console.log('StatusCode: ', response && response.statusCode);
 
     let obj = JSON.parse(body);
 
@@ -383,9 +381,6 @@ twitch.on("chat", (channel, user, message, self) => {
       let requestMap = "https://euw1.api.riotgames.com/lol/" + "league/v3/positions/by-summoner/" + channel_sid + "?api_key=" + api_key;
       request(requestMap, function(error, response, body) {
 
-        console.log('Error: ', error);
-        console.log('StatusCode: ', response && response.statusCode);
-
         let obj = JSON.parse(body);
 
         if (response.statusCode !== 200) {
@@ -433,13 +428,13 @@ twitch.on("chat", (channel, user, message, self) => {
           let level2 = obj[1].championLevel;
           let level3 = obj[2].championLevel;
 
-          twitch.action(channel, prefix + config.channel.summonername + ' bester Champion ist ' + champ1 + ' - ' + title + ' (Level ' + level1 + ' | ' + mastery1 + ' Punkte). Dicht gefolgt von ' + champ2 + ' (Level ' + level2 + ' | ' + mastery2 + ' Punkte) und ' + champ3 + ' (Level ' + level3 + ' | ' + mastery3 + ' Punkte).');
+          twitch.action(channel, prefix + config.channel.summonername + ' bester Champion ist ' + champ1 + ' - ' + title + ' (Level ' + level1 + ' | ' + mastery1 + ' Punkte). Gefolgt von ' + champ2 + ' (Level ' + level2 + ' | ' + mastery2 + ' Punkte) und ' + champ3 + ' (Level ' + level3 + ' | ' + mastery3 + ' Punkte).');
 
         }
 
       });
 
-      console.log("[" + moment().format('LTS') + "] Topchamp profile requested in " + channel + "!")
+      console.log("[" + moment().format('LTS') + "] Topchamps requested in " + channel + "!")
     }
 
     // Winrate Command
@@ -448,8 +443,6 @@ twitch.on("chat", (channel, user, message, self) => {
       let requestMap = "https://euw1.api.riotgames.com/lol/" + "league/v3/positions/by-summoner/" + channel_sid + "?api_key=" + api_key;
 
       request(requestMap, function(error, response, body) {
-        console.log('Error: ', error);
-        console.log('StatusCode: ', response && response.statusCode);
 
         let obj = JSON.parse(body);
 
@@ -467,7 +460,7 @@ twitch.on("chat", (channel, user, message, self) => {
           twitch.action(channel, prefix + obj[0].playerOrTeamName + ' hat eine Winrate von ' + q_winrate_rounded + '% mit insgesamt ' + q_wins + ' gewonnenen und ' + q_losses + ' verlorenen Spielen. (' + queue + ')');
         }
 
-        /* ... */
+        console.log("[" + moment().format('LTS') + "] Winrate requested in " + channel + "!")
 
       });
     }
@@ -478,8 +471,6 @@ twitch.on("chat", (channel, user, message, self) => {
       let requestMap = "https://euw1.api.riotgames.com/lol/" + "summoner/v3/summoners/" + channel_sid + "?api_key=" + api_key;
 
       request(requestMap, function(error, response, body) {
-        console.log('Error: ', error);
-        console.log('StatusCode: ', response && response.statusCode);
 
         let obj = JSON.parse(body);
 
@@ -492,7 +483,7 @@ twitch.on("chat", (channel, user, message, self) => {
           twitch.action(channel, prefix + obj.name + ' ist im Moment Level ' + level + '.');
         }
 
-        /* ... */
+        console.log("[" + moment().format('LTS') + "] Level requested in " + channel + "!")
 
       });
     }
@@ -503,9 +494,6 @@ twitch.on("chat", (channel, user, message, self) => {
       let requestMap = "https://euw1.api.riotgames.com/lol/" + "league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5" + "?api_key=" + api_key;
 
       request(requestMap, function(error, response, body) {
-        console.log('Error: ', error);
-        console.log('StatusCode: ', response && response.statusCode);
-
         let obj = JSON.parse(body);
 
         if (response.statusCode !== 200) {
@@ -522,7 +510,7 @@ twitch.on("chat", (channel, user, message, self) => {
           twitch.action(channel, prefix + rank1.playerOrTeamName + ' ist Momentan Rank 1 auf EUW als Challenger mit ' + numberize(rank1.leaguePoints) + ' LP und einer Winrate von ' + winrate + '% (' + wins + 'W/' + losses + 'L).');
         }
 
-        /* ... */
+        console.log("[" + moment().format('LTS') + "] Rank 1 player requested in " + channel + "!")
 
       });
     }
@@ -533,8 +521,6 @@ twitch.on("chat", (channel, user, message, self) => {
       let requestMap = "https://euw1.api.riotgames.com/lol/" + "status/v3/shard-data" + "?api_key=" + api_key;
 
       request(requestMap, function(error, response, body) {
-        console.log('Error: ', error);
-        console.log('StatusCode: ', response && response.statusCode);
 
         let obj = JSON.parse(body);
 
@@ -556,8 +542,6 @@ twitch.on("chat", (channel, user, message, self) => {
               let incidents = entry.incidents;
               incidents.forEach(e => {
                 incident_count++;
-                console.log(entry.name + ':');
-                console.log(e.updates[0].content);
                 all_incidents.push(entry.name + ': ' + e.updates[0].content)
               });
             }
@@ -573,7 +557,7 @@ twitch.on("chat", (channel, user, message, self) => {
           }
         }
 
-        /* ... */
+        console.log("[" + moment().format('LTS') + "] Server status requested in " + channel + "!")
 
       });
     }
@@ -585,8 +569,6 @@ twitch.on("chat", (channel, user, message, self) => {
       let requestMap = "https://euw1.api.riotgames.com/lol/" + "spectator/v3/active-games/by-summoner/" + channel_sid + "?api_key=" + api_key;
 
       request(requestMap, function(error, response, body) {
-        console.log('Error: ', error);
-        console.log('StatusCode: ', response && response.statusCode);
 
         let obj = JSON.parse(body);
 
@@ -613,6 +595,8 @@ twitch.on("chat", (channel, user, message, self) => {
 
           twitch.action(channel, prefix + channel_sn + ' befindet sich seit ' + minutes + ' Minuten und ' + seconds + ' Sekunden ingame. | Queue: ' + getQueueName(obj.gameQueueConfigId) + ' | Map: ' + getMapName(obj.mapId) + ' | Team: ' + getTeamName(participant.teamId) + ' | Champion: ' + getChampionName(participant.championId) + ' | Spells: ' + getSpellName(participant.spell1Id) + ' und ' + getSpellName(participant.spell2Id) + '.');
         }
+
+        console.log("[" + moment().format('LTS') + "] Live game info requested in " + channel + "!")
 
       });
     }
