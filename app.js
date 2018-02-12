@@ -8,7 +8,6 @@ var config = require('./config.json');
 var tmi = require('tmi.js');
 var moment = require('moment');
 var request = require('request');
-var TeemoJS = require('teemojs');
 var api = TeemoJS(config.riot_api.token);
 
 
