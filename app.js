@@ -633,7 +633,7 @@ twitch.on("chat", (channel, user, message, self) => {
     // Command Lists
     if (message.toLowerCase().startsWith("!commands")) {
       if (self) return
-      twitch.action(channel, prefix + "Verfügbare Commands: !commands, !elo, !winrate, !topchamps, !rank1, !status, !livegame, !info, !myelo, !playlist, !tilt, !twitter, !8ball und !zeit.")
+      twitch.action(channel, prefix + "Verfügbare Commands: !elo, !winrate, !livegame, !topchamps, !rank1, !level, !info, !myelo, !playlist, !tilt, !twitter, !8ball und !zeit.")
       twitch.action(channel, prefix + "Weitere Commands für Moderatoren und Subs können abgerufen werden mit !modcommands und !subcommands.")
       console.log("[" + moment().format('LTS') + "] Commands requested in " + channel + "!")
     }
