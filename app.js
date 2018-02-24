@@ -388,8 +388,8 @@ twitch.on("chat", (channel, user, message, self) => {
           let elo = normalize(obj[0].tier);
           let queue = getQueueName(obj[0].queueType);
 
-          twitch.action(channel, prefix + obj[0].playerOrTeamName + ' ist momentan ' + elo + ' ' + obj[0].rank + ' mit ' + obj[0].leaguePoints + ' LP. (' + queue + ')');
-          twitch.action(channel, prefix + ' Für mehr Informationen, probiere es mit !winrate und !topchamps');
+          twitch.action(channel, prefix + obj[0].playerOrTeamName + ' ist momentan ' + elo + ' ' + obj[0].rank + ' mit ' + obj[0].leaguePoints + ' LP.');
+          //twitch.action(channel, prefix + ' Für mehr Informationen, probiere es mit !winrate und !topchamps');
         }
 
       });
@@ -455,7 +455,7 @@ twitch.on("chat", (channel, user, message, self) => {
 
           let queue = getQueueName(obj[0].queueType);
 
-          twitch.action(channel, prefix + obj[0].playerOrTeamName + ' hat eine Winrate von ' + q_winrate_rounded + '% mit insgesamt ' + q_wins + ' gewonnenen und ' + q_losses + ' verlorenen Spielen. (' + queue + ')');
+          twitch.action(channel, prefix + obj[0].playerOrTeamName + ' hat eine Winrate von ' + q_winrate_rounded + '% mit insgesamt ' + q_wins + ' gewonnenen und ' + q_losses + ' verlorenen Spielen.');
         }
 
         console.log("[" + moment().format('LTS') + "] Winrate requested in " + channel + "!")
@@ -488,6 +488,8 @@ twitch.on("chat", (channel, user, message, self) => {
 
     // Rank1 Commands
     if (message.toLowerCase().startsWith("!rank1")) {
+
+      getChallengerLeague();
 
       let requestMap = "https://euw1.api.riotgames.com/lol/" + "league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5" + "?api_key=" + api_key;
 
@@ -620,6 +622,12 @@ twitch.on("chat", (channel, user, message, self) => {
       if (self) return
       twitch.action(channel, prefix + "Mehmet's aktuelle Playlist findest hier: https://goo.gl/y6DDse 🎶")
       console.log("[" + moment().format('LTS') + "] Playlist requested in " + channel + "!")
+    }
+
+    if (message.toLowerCase().startsWith("!emotes")) {
+      if (self) return
+      twitch.action(channel, prefix + "Alle FFZ-Emotes für diesen Channel kannst du hier einsehen: https://goo.gl/krvWmb 😇")
+      console.log("[" + moment().format('LTS') + "] Emotes requested in " + channel + "!")
     }
 
     // Tilt Command
