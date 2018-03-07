@@ -1,7 +1,8 @@
 {
 
   "riot_api": {
-    "token": "api key"
+    "token": "api key",
+    "regionEndpoint": "euw1"
   },
 
   "twitch": {
