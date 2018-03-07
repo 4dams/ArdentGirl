@@ -35,6 +35,7 @@ var channel_sid;
 var channel_sn;
 var prefix = config.channel.prefix;
 var api_key = config.riot_api.token;
+var api_endpoint = config.riot_api.regionEndpoint;
 var championList;
 var challengerLeague;
 var game_version;
@@ -106,16 +107,14 @@ function sortNumber(a, b) {
 }
 
 function getCurrentGameVersion() {
-  request('https://euw1.api.riotgames.com/lol/static-data/v3/versions' + "?api_key=" + api_key, function(error, response, body) {
-
-    console.log(body)
+  request('https://' + api_endpoint + '.api.riotgames.com/lol/static-data/v3/versions' + "?api_key=" + api_key, function(error, response, body) {
 
     if (response.statusCode == 200) {
       var versions = JSON.parse(body);
       game_version = versions[0];
       console.log("[" + moment().format('LTS') + "] Game version set to: " + game_version);
     } else {
-      console.log("[" + moment().format('LTS') + "] FATAL ERROR | RATE LIMIT EXCEEDED?")
+      console.log("[" + moment().format('LTS') + "] ERROR | RATE LIMIT EXCEEDED?")
     }
 
   });
@@ -309,7 +308,7 @@ function getSpellName(id) {
 
 function getSummonerIds() {
 
-  let requestMap = "https://euw1.api.riotgames.com/lol/" + "summoner/v3/summoners/by-name/" + config.channel.summonername + "?api_key=" + api_key;
+  let requestMap = "https://" + api_endpoint + ".api.riotgames.com/lol/" + "summoner/v3/summoners/by-name/" + config.channel.summonername + "?api_key=" + api_key;
 
   request(requestMap, function(error, response, body) {
 
@@ -333,7 +332,7 @@ function getChampionList() {
 }
 
 function getChallengerLeague() {
-  request("https://euw1.api.riotgames.com/lol/" + "league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5" + "?api_key=" + api_key, function(error, response, body) {
+  request("https://" + api_endpoint + ".api.riotgames.com/lol/" + "league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5" + "?api_key=" + api_key, function(error, response, body) {
     var league = JSON.parse(body);
     data = league.entries;
     challengerLeague = data.sort(sortNumber);
@@ -376,7 +375,7 @@ twitch.on("chat", (channel, user, message, self) => {
 
       if (self) return
 
-      let requestMap = "https://euw1.api.riotgames.com/lol/" + "league/v3/positions/by-summoner/" + channel_sid + "?api_key=" + api_key;
+      let requestMap = "https://" + api_endpoint + ".api.riotgames.com/lol/" + "league/v3/positions/by-summoner/" + channel_sid + "?api_key=" + api_key;
       request(requestMap, function(error, response, body) {
 
         let obj = JSON.parse(body);
@@ -400,7 +399,7 @@ twitch.on("chat", (channel, user, message, self) => {
     if (message.toLowerCase().startsWith("!topchamp") || message.toLowerCase().startsWith("!topchamps")) {
       if (self) return
 
-      let requestMap = "https://euw1.api.riotgames.com/lol/" + "champion-mastery/v3/champion-masteries/by-summoner/" + channel_sid + "?api_key=" + api_key;
+      let requestMap = "https://" + api_endpoint + ".api.riotgames.com/lol/" + "champion-mastery/v3/champion-masteries/by-summoner/" + channel_sid + "?api_key=" + api_key;
 
       request(requestMap, function(error, response, body) {
         // console.log('Error: ', error);
@@ -438,7 +437,7 @@ twitch.on("chat", (channel, user, message, self) => {
     // Winrate Command
     if (message.toLowerCase().startsWith("!winrate")) {
 
-      let requestMap = "https://euw1.api.riotgames.com/lol/" + "league/v3/positions/by-summoner/" + channel_sid + "?api_key=" + api_key;
+      let requestMap = "https://" + api_endpoint + ".api.riotgames.com/lol/" + "league/v3/positions/by-summoner/" + channel_sid + "?api_key=" + api_key;
 
       request(requestMap, function(error, response, body) {
 
@@ -466,7 +465,7 @@ twitch.on("chat", (channel, user, message, self) => {
     // Level Commands
     if (message.toLowerCase().startsWith("!level")) {
 
-      let requestMap = "https://euw1.api.riotgames.com/lol/" + "summoner/v3/summoners/" + channel_sid + "?api_key=" + api_key;
+      let requestMap = "https://" + api_endpoint + ".api.riotgames.com/lol/" + "summoner/v3/summoners/" + channel_sid + "?api_key=" + api_key;
 
       request(requestMap, function(error, response, body) {
 
@@ -491,7 +490,7 @@ twitch.on("chat", (channel, user, message, self) => {
 
       getChallengerLeague();
 
-      let requestMap = "https://euw1.api.riotgames.com/lol/" + "league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5" + "?api_key=" + api_key;
+      let requestMap = "https://" + api_endpoint + ".api.riotgames.com/lol/" + "league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5" + "?api_key=" + api_key;
 
       request(requestMap, function(error, response, body) {
         let obj = JSON.parse(body);
@@ -518,7 +517,7 @@ twitch.on("chat", (channel, user, message, self) => {
     // Status Commands
     if (message.toLowerCase().startsWith("!status")) {
 
-      let requestMap = "https://euw1.api.riotgames.com/lol/" + "status/v3/shard-data" + "?api_key=" + api_key;
+      let requestMap = "https://" + api_endpoint + ".api.riotgames.com/lol/" + "status/v3/shard-data" + "?api_key=" + api_key;
 
       request(requestMap, function(error, response, body) {
 
@@ -566,7 +565,7 @@ twitch.on("chat", (channel, user, message, self) => {
     // Level Commands
     if (message.toLowerCase().startsWith("!livegame")) {
 
-      let requestMap = "https://euw1.api.riotgames.com/lol/" + "spectator/v3/active-games/by-summoner/" + channel_sid + "?api_key=" + api_key;
+      let requestMap = "https://" + api_endpoint + ".api.riotgames.com/lol/" + "spectator/v3/active-games/by-summoner/" + channel_sid + "?api_key=" + api_key;
 
       request(requestMap, function(error, response, body) {
 
