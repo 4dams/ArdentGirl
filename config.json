@@ -8,7 +8,8 @@
   "twitch": {
     "username": "username",
     "password": "oauth token",
-    "channels": ["#red_phoenixlol"]
+    "channels": ["#red_phoenixlol"],
+    "action": false
   },
 
   "channel": {
