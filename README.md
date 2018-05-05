@@ -7,9 +7,11 @@
 <h1 align="center">ArdentGirl Twitch Bot</h1>
 
 <p align="center">
-This bot has some nice features such as informational, fun and even League of Legends related chat commands* which serve you a lot of information about the streamer or other summoners!
+    This bot has some nice features such as informational, fun and even League of Legends related chat commands* which serve you a lot of information about the streamer or other summoners!
+</p>
 
-Note that all LoL related commands require a [Riot Games API key](https://developer.riotgames.com)!
+<p align="center">
+    Note that all LoL related commands require a [Riot Games API key](https://developer.riotgames.com)!
 </p>
 
 
