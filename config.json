@@ -1,0 +1,22 @@
+{
+
+  "bot": {
+    "prefix": "!",
+    "version": "2.1",
+    "messagePrefix": "» ",
+    "developers": ["red_phoenixlol", "mr4dams"]
+  },
+
+  "league": {
+    "apiKey": "Riot Games API Key",
+    "apiEndpoint": "euw1",
+    "gameVersion": "8.9.1"
+  },
+
+  "twitch": {
+    "username": "Bot User Name",
+    "password": "Bot OAuth Token",
+    "channels": ["red_phoenixlol"]
+  }
+
+}
