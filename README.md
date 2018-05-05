@@ -14,56 +14,48 @@ This got some nice features such as informational commands, fun commands and eve
 
 ### League Commands
 
-| Command        | Description           | Usage  |
+| Command | Description | Usage |
 | ------------- | ------------- | :-----------: |
-| !elo      | Shows the ranking of the streamer, or if given, the ranking of another summoner | `!elo [<summoner name>]` |
-| !level      | Shows the level of a summoner, or if given, the level of another summoner | `!level [<summoner name>]` |
+| !elo | Shows the ranking of the streamer, or if given, the ranking of another summoner | `!elo [<summoner name>]` |
+| !level | Shows the level of a summoner, or if given, the level of another summoner | `!level [<summoner name>]` |
 | !main | Shows the main champions of a summoner, or if given, the main champions of another summoner | `!main [<summoner name>]` |
 | !winrate | Shows the winrate of a summoner, or if given, the winrate of another summoner | `!winrate [<summoner name>]` |
 
-### Default Commands
-- [X] "!commands" to get a list of all commands
-- [X] "!info" gives some info about the bot itself
-- [X] "!myelo" a fun command which returns a random elo
-- [X] "!zeit" sends the streamers current time
-- [X] "!8ball" for responding with a random string (yes/no/maybe...)
-- [X] "!vanish" to remove all messages from yourself
-- [ ] "!addcommand `<trigger> <response>`" lets you add a new command via chat
-- [ ] "!chatstats" or "!emotestats" to see how much a specific emote/string has been used
-- [ ] "!permit" permit users to post links (the bot will otherwise delete all links)
-- [ ] "!setsummoner" to save info about a channels default summoner
+### Prewritten Commands
 
-*Note: Those commands have been adjusted for one special streamer but you can change and adjust them as much as you want, even though they're in german.*
+#### User Commands
 
-## To Do
+| Command | Description | Usage |
+| ------------- | ------------- | :-----------: |
+| !8ball | Provides you a random answer on your question | `!8ball <question>` |
+| !commands | Provides a link to a list with all commands for a channel | `!commands` |
+| !emotes | Provides you a link with all FFZ-Emotes for your channel | `!emotes` |
+| !followage | Shows you how long you or a specified user have been following the streamer | `!followage [<username>]` |
+| !info | Provides information about the chat bot | `!info` |
+| !playlist | Provides the link to the streamer's playlist | `!playlist` |
+| !status | Provides some statistics about the bot including uptime and command usage | `!status` |
+| !tilt | An example counter command counting how often the streamer got tilted | `!tilt` |
+| !time | Provides the current time for the streamer | `!time` |
+| !twitter | Provides the link to the streamers's Twitter profile | `!twitter` |
+| !vanish | Removes the last messages of the command user | `!vanish` |
 
-- Split commands into single files
+#### Moderator Commands
+
+| Command | Description | Usage |
+| ------------- | ------------- | :-----------: |
+| !purge | Shows the winrate of a summoner, or if given, the winrate of another summoner | `!winrate [<summoner name>]` |
+
+#### Bot Owner Commands
+
+| Command | Description | Usage |
+| ------------- | ------------- | :-----------: |
+| !join | Makes the bot join a specified channel | `!join <channel name>` |
+| !part | Makes the bot leave a specified channel | `!part <channel name>` |
+| !reload | Shows the winrate of a summoner, or if given, the winrate of another summoner | `!winrate [<summoner name>]` |
 
 ## Installation
 
-```
-// Tmi.js
-npm i tmi.js
-
-// Moment.js
-npm i moment
-
-// Request
-npm i request
-```
-
-Other than that, you will have a file called "config.json" where you can set all your information such as:  
-  
-1. Your Riot API token
-2. Your Twitch OAuth token
-3. Channel names
-  
-The Riot API token can be retrieved at https://developer.riotgames.com/.</br>
-Your Twitch OAuth token can be found at https://twitchapps.com/tmi/.</br>
-  
-You will then have to fill in your tokens and other information into the `config.json`.
-  
-After you have done that, you can simply start the bot with `node app.js` in the directory where the app.js is located in!
+<pre align="center">npm install</pre>
 
 ## Disclaimer
 
