@@ -1,4 +1,9 @@
-![Preview](https://d3aqoihi2n8ty8.cloudfront.net/actions/mrdestructoid/light/animated/5000/4.gif)
+<p align="center">
+	<a target="_blank" href="https://4da.ms/">
+		<img src="https://i.4da.ms/ThJrS2.gif" alt="Icon"/>
+	</a>
+</p>
+
 # TwitchBot 
 This is my small personal Twitch-Bot which I run on my own Twitch account.
 - [Twitch](https://twitch.tv/mr4dams)
