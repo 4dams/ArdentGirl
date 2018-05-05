@@ -15,11 +15,11 @@ This got some nice features such as informational commands, fun commands and eve
 ### League Commands
 
 | Command        | Description           | Usage  |
-| ------------- | ------------- | ----- |
-| !elo      | Shows the ranking of a summoner, if no name is given, shows the ranking of the streamer | `!elo [<summoner name>]` |
-| !level      | Shows the level of a summoner, if no name is given, shows the level of the streamer | `!level [<summoner name>]` |
-| !main | Shows the main champions of a summoner, if no name is given, shows the main champions of the streamer | `!main [<summoner name>]` |
-| !winrate | Shows the winrate of a summoner, if no name is given, shows the winrate of the streamer | `!winrate [<summoner name>]` |
+| ------------- | ------------- | :-----------: |
+| !elo      | Shows the ranking of the streamer, or if given, the ranking of another summoner | `!elo [<summoner name>]` |
+| !level      | Shows the level of a summoner, or if given, the level of another summoner | `!level [<summoner name>]` |
+| !main | Shows the main champions of a summoner, or if given, the main champions of another summoner | `!main [<summoner name>]` |
+| !winrate | Shows the winrate of a summoner, or if given, the winrate of another summoner | `!winrate [<summoner name>]` |
 
 ### Default Commands
 - [X] "!commands" to get a list of all commands
