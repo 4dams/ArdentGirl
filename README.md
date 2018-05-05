@@ -15,7 +15,7 @@
 </p>
 
 
-## Prewritten Available Commands
+<h2 align="center">ArdentGirl Twitch Bot</h2>
 
 ### League of Legends Commands
 
