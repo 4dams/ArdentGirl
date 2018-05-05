@@ -15,9 +15,11 @@
 </p>
 
 
-## Some Available Commands
+## Prewritten Available Commands
 
-### League Commands
+### League of Legends Commands
+
+#### User Commands
 
 | Command | Description | Usage |
 | ------------- | ------------- | :-----------: |
@@ -26,7 +28,7 @@
 | !main | Shows the main champions of a summoner, or if given, the main champions of another summoner | `!main [<summoner name>]` |
 | !winrate | Shows the winrate of a summoner, or if given, the winrate of another summoner | `!winrate [<summoner name>]` |
 
-### Prewritten Commands
+### General Commands
 
 #### User Commands
 
@@ -48,7 +50,7 @@
 
 | Command | Description | Usage |
 | ------------- | ------------- | :-----------: |
-| !purge | Shows the winrate of a summoner, or if given, the winrate of another summoner | `!winrate [<summoner name>]` |
+| !purge | Removes all messages of a provided user | `!purge <username>` |
 
 #### Bot Owner Commands
 
@@ -56,7 +58,7 @@
 | ------------- | ------------- | :-----------: |
 | !join | Makes the bot join a specified channel | `!join <channel name>` |
 | !part | Makes the bot leave a specified channel | `!part <channel name>` |
-| !reload | Shows the winrate of a summoner, or if given, the winrate of another summoner | `!winrate [<summoner name>]` |
+| !reload | Reloads a specific command file after changes have been made to it | `!reload <command name>` |
 
 ## Installation
 
