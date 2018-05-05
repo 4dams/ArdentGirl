@@ -4,26 +4,22 @@
 	</a>
 </p>
 
-# TwitchBot 
-This is my small personal Twitch-Bot which I run on my own Twitch account.
-- [Twitch](https://twitch.tv/mr4dams)
-- Website/Command lists (WIP!)
-- Latest Release (WIP!)  
+<h1 align="center">ArdentGirl Twitch Bot</h1>
   
-It got some nice features such as informational commands, fun commands and even League of Legends related commands which grant you a lot of information about a specific Summoner!  
+This got some nice features such as informational commands, fun commands and even a bunch of League of Legends related commands* which serve you a lot of information about the streamer or other summoners!  
   
-*Just a quick note: You will need a [Riot Games API Key](https://developer.riotgames.com) in order to use the League commands!*
+* *LoL related commands require a [Riot Games API key](https://developer.riotgames.com)!*
 
-## Available Commands
+## Some Available Commands
 
 ### League Commands
-- [X] "!elo" sends current league information about the streamer
-- [X] "!winrate" calculates a users current winrate and then sends it in chat
-- [X] "!topchamps" displays a summoners top 3 champions (name, level and mastery score)
-- [X] "!rank1" shows some info about the defined servers Rank 1 Challenger
-- [X] "!status" provides a list of League's server status and warning, if there are any
-- [X] "!livegame" displays info about the streamers current game (runes wip)
 
+| Command        | Description           | Usage  |
+| ------------- |-------------| :-----:|
+| !elo      | Shows the ranking of a summoner, if no name is given, shows the ranking of the streamer | `!elo [<summoner name>]` |
+| !level      | Shows the level of a summoner, if no name is given, shows the level of the streamer | `!level [<summoner name>]` |
+| !main | Shows the main champions of a summoner, if no name is given, shows the main champions of the streamer | `!main [<summoner name>]` |
+| !winrate | Shows the winrate of a summoner, if no name is given, shows the winrate of the streamer | `!winrate [<summoner name>]` |
 
 ### Default Commands
 - [X] "!commands" to get a list of all commands
