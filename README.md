@@ -15,7 +15,7 @@ This got some nice features such as informational commands, fun commands and eve
 ### League Commands
 
 | Command        | Description           | Usage  |
-| ------------- |-------------| :-----:|
+| ------------- | ------------- | ----- |
 | !elo      | Shows the ranking of a summoner, if no name is given, shows the ranking of the streamer | `!elo [<summoner name>]` |
 | !level      | Shows the level of a summoner, if no name is given, shows the level of the streamer | `!level [<summoner name>]` |
 | !main | Shows the main champions of a summoner, if no name is given, shows the main champions of the streamer | `!main [<summoner name>]` |
