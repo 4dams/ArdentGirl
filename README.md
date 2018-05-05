@@ -11,11 +11,11 @@
 </p>
 
 <p align="center">
-    Note that all LoL related commands require a [Riot Games API key](https://developer.riotgames.com)!
+    Note that all LoL related commands require a <b>Riot Games API key</b>!
 </p>
 
 
-<h2 align="center">ArdentGirl Twitch Bot</h2>
+<h2 align="center">Preconfigured Example Commands</h2>
 
 ### League of Legends Commands
 
