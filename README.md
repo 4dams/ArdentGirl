@@ -1,14 +1,17 @@
 <p align="center">
-	<a target="_blank" href="https://4da.ms/">
-		<img src="https://i.4da.ms/ThJrS2.gif" alt="Icon"/>
-	</a>
+    <a target="_blank" href="https://4da.ms/">
+        <img src="https://i.4da.ms/ThJrS2.gif" alt="Icon"/>
+    </a>
 </p>
 
 <h1 align="center">ArdentGirl Twitch Bot</h1>
-  
-This got some nice features such as informational commands, fun commands and even a bunch of League of Legends related commands* which serve you a lot of information about the streamer or other summoners!  
-  
-* *LoL related commands require a [Riot Games API key](https://developer.riotgames.com)!*
+
+<p align="center">
+This bot has some nice features such as informational, fun and even League of Legends related chat commands* which serve you a lot of information about the streamer or other summoners!
+
+Note that all LoL related commands require a [Riot Games API key](https://developer.riotgames.com)!
+</p>
+
 
 ## Some Available Commands
 
