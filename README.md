@@ -60,10 +60,10 @@
 | !part | Makes the bot leave a specified channel | `!part <channel name>` |
 | !reload | Reloads a specific command file after changes have been made to it | `!reload <command name>` |
 
-## Installation
+<h2 align="center"><h2 align="center">Installation</h2></h2>
 
 <pre align="center">npm install</pre>
 
-## Disclaimer
+<h2 align="center">Disclaimer</h2>
 
 >4dams' TwitchBot isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
