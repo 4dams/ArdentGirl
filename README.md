@@ -62,7 +62,7 @@
 
 <h2 align="center"><h2 align="center">Installation</h2></h2>
 
-<pre align="center">npm install</br>node setup</pre>
+<pre align="center">npm install</br>node setup</br>node index</pre>
 
 <h2 align="center">Disclaimer</h2>
 
